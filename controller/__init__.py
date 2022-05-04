@@ -1,5 +1,8 @@
+from os import startfile
+from os.path import realpath
 from threading import Thread
 from time import sleep, perf_counter
+from concurrent.futures import ThreadPoolExecutor
 
 import PySimpleGUI as sg
 
@@ -26,8 +29,8 @@ class Controller:
 
     def read_events(self) -> str | None:
         """
-        Reads window events. \n
-        Returns 'done' if execution finishes \n
+        Reads window events and returns 'done'
+        if the execution finishes. \n
         """
         event, values = self.view.read(timeout=50)
 
@@ -51,7 +54,11 @@ class Controller:
                 return
             LOADING_VIEW('Exporting')
             self.view.close()
-            self.gif_obj.crop_gif(self.selection.box)
+            with ThreadPoolExecutor() as e:
+                task = e.submit(self.gif_obj.crop_gif, self.selection.box)
+                output = task.result()
+            if output:
+                startfile(realpath(output))
             return 'done'
 
         if event == '-RESET_BTN-':
@@ -61,9 +68,9 @@ class Controller:
 
     def _start_gif_thread(self):
         """
-        Starts a thread that generates an \n
-        event ('NextFrame', n) every 0.01 \n
-        second, where 'n' is the current \n
+        Starts a thread that generates an
+        event ('NextFrame', n) every 0.01
+        second, where 'n' is the current
         gif frame.
         """
         thread = Thread(

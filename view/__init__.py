@@ -14,7 +14,7 @@ def LOADING_VIEW(mode: str):
         non_blocking=True,
         font='Default 12 bold',
         no_titlebar=True,
-        image=CLOCK
+        image=CLOCK()
     )
 
 
