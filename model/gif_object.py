@@ -8,6 +8,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.video.fx.crop import crop
 from screeninfo import get_monitors
 
+from view import LOADING, EXPORT_PROGRESS
 from .units import Pixels, CropBox
 
 
@@ -24,10 +25,9 @@ class GifObject:
         attributes.
         """
         self.file = file
-        self.size = _get_img_size(file)
+        self.size, self.n_frames = _get_gif_info(file)
         self.resize_factor = self._get_resize()
-        self.frames = _load_frames(file, self.resize_factor)
-        self.n_frames = len(self.frames)
+        self.frames = self._load_frames()
         print(len(self.frames), 'frames loaded')
 
 
@@ -49,10 +49,10 @@ class GifObject:
         and returns output file name.
         """
         output = f"{splitext(self.file)[0]}_CROP.gif"
-        box = self._apply_factor(box)
+        box = self._apply_crop_factor(box)
         gif = VideoFileClip(self.file).subclip(0)
         cropped = crop(gif, *box)
-        cropped.write_gif(filename=output, program='ffmpeg')
+        cropped.write_gif(filename=output, program='ffmpeg', fps=30)
         return output
 
 
@@ -70,7 +70,7 @@ class GifObject:
         return min(factor_x, factor_y)
 
 
-    def _apply_factor(self, box: CropBox) -> CropBox:
+    def _apply_crop_factor(self, box: CropBox) -> CropBox:
         """
         Applies the gif object resize factor
         into the crop coordinates selected by
@@ -78,6 +78,54 @@ class GifObject:
         **CropBox(x0, y0, x1, y1)**
         """
         return CropBox(*[int(n / self.resize_factor) for n in box])
+
+
+    def _load_frames(self) -> list[bytes]:
+        """
+        Loads all gif frames into memory using
+        multiple threads and returns it's
+        contents as a *list of bytes*.
+        """
+        frames = iio.imiter(self.file)
+        with ThreadPoolExecutor() as e:
+            i, results = 0, []
+            for frame in frames:
+                results.append(e.submit(self._frame_to_ram, frame))
+                LOADING('loading', i, self.n_frames)
+                i += 1
+        return [data.result() for data in results]
+
+
+    def _frame_to_ram(self, img: iio) -> bytes:
+        """
+        Resizes a gif frame if necessary
+        and loads it into memory, returning
+        it's contents as *bytes*.
+        """
+        if self.resize_factor == 1.0:
+            with BytesIO() as output:
+                iio.imwrite(output, img, format_hint='.png')
+                return output.getvalue()
+        else:
+            img = Image.fromarray(img)
+            img = img.resize(
+                resample=Image.Resampling.LANCZOS,
+                reducing_gap=1.0,
+                size=self.display_size
+            )
+            with BytesIO() as output:
+                img.save(output, format='png')
+                return output.getvalue()
+
+
+    def crop_export(self, box: CropBox):
+        with ThreadPoolExecutor() as e:
+            task = e.submit(
+                self.crop_gif, box
+            )
+            EXPORT_PROGRESS(task, self.n_frames)
+            result = task.result()
+        return result
 
 
 def _get_monitor_area(factor=0.7) -> Pixels:
@@ -93,56 +141,12 @@ def _get_monitor_area(factor=0.7) -> Pixels:
     return Pixels(w, h)
 
 
-def _get_img_size(file) -> Pixels:
+def _get_gif_info(file) -> tuple[Pixels, int]:
     """
-    Returns the image file size as
-    **Pixels(x, y)**
+    Returns the gif file size as
+    **Pixels(x, y)**, and its number
+    of frames as **int**
     """
     gif_img = Image.open(file)
-    return Pixels(*gif_img.size)
-
-
-def _load_frames(file: str, resize=1.0) -> list[bytes]:
-    """
-    Loads all gif frames into memory using
-    multiple threads and returns it's
-    contents as a *list of bytes*.
-    """
-    frames = iio.imiter(file)
-    with ThreadPoolExecutor() as e:
-        if resize == 1.0:
-            results = [e.submit(_load_to_ram, frame)
-                       for frame in frames]
-        else:
-            results = [e.submit(_resize_to_ram, frame, resize)
-                       for frame in frames]
-    return [data.result() for data in results]
-
-
-def _load_to_ram(img: iio) -> bytes:
-    """
-    Loads a gif frame into memory and
-    return it's contents as *bytes*.
-    """
-    with BytesIO() as output:
-        iio.imwrite(output, img, format_hint='.png')
-        return output.getvalue()
-
-
-def _resize_to_ram(img: iio, factor: float) -> bytes:
-    """
-    Resizes a gif frame and loads it
-    into memory, returning it's content
-    as *bytes*.
-    """
-    img = Image.fromarray(img)
-    width = int(img.size[0] * factor)
-    height = int(img.size[1] * factor)
-    img = img.resize(
-        resample=Image.Resampling.LANCZOS,
-        reducing_gap=1.0,
-        size=(width, height)
-    )
-    with BytesIO() as output:
-        img.save(output, format='png')
-        return output.getvalue()
+    n_frames = gif_img.n_frames
+    return Pixels(*gif_img.size), n_frames

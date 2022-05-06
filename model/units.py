@@ -10,6 +10,14 @@ class CropSelection:
         self.end = Pixels(None, None)
         self.box = CropBox(None, None, None, None)
 
+    @property
+    def still_selecting(self):
+        return self.end == Pixels(None, None)
+
+    @property
+    def is_empty(self):
+        return self.box == CropBox(None, None, None, None)
+
     def update(self, values):
         if self.start == (None, None):
             self.start = Pixels(*values)

@@ -1,31 +1,37 @@
-from os import startfile
-from os.path import realpath
 from threading import Thread
-from time import sleep, perf_counter
-from concurrent.futures import ThreadPoolExecutor
+from time import sleep
 
 import PySimpleGUI as sg
 
 from model.gif_object import GifObject
-from model.units import CropSelection, Pixels
-from view import LOADING_VIEW, CROP_VIEW
+from model.units import CropSelection
+from view import CROP_GIF, OUTPUT_FILE
 from .crop_info import CropInfo
 from .gif_graph import GifGraph
 
 
 class Controller:
+    def _get_view(self):
+        return CROP_GIF(self.gif_obj.display_size)
+
+    def _get_graph(self):
+        return GifGraph(self.view, self.gif_obj)
+
+    def _get_info(self):
+        return CropInfo(self.view, self.gif_obj)
+
     def __init__(self, gif_file):
-        t_start = perf_counter()
-        self.view = LOADING_VIEW('Loading')
+        """
+        Initializes a Controller instance
+
+        """
         self.gif_obj = GifObject(gif_file)
-        self.view = CROP_VIEW(self.gif_obj.display_size)
-        self.gif_graph = GifGraph(self.view, self.gif_obj)
-        self.crop_info = CropInfo(self.view, self.gif_obj)
+        self.view = self._get_view()
+        self.gif_graph = self._get_graph()
+        self.crop_info = self._get_info()
         self.selection = CropSelection()
         self.stop_animation = False
         self._start_gif_thread()
-        print(f"Loaded in {(perf_counter() - t_start):.2f}s")
-
 
     def read_events(self) -> str | None:
         """
@@ -43,23 +49,19 @@ class Controller:
             if self.gif_graph.drawing:
                 self.gif_graph.draw_selection(self.selection)
 
-        if '-GRAPH-' in event and None not in values['-GRAPH-']:
+        if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
             self.selection.update(values['-GRAPH-'])
             self.crop_info.update(self.selection.box)
             self.gif_graph.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':
-            self.stop_animation = True
-            if self.selection.end is Pixels(None, None):
+            if self.selection.still_selecting:
                 return
-            LOADING_VIEW('Exporting')
-            self.view.close()
-            with ThreadPoolExecutor() as e:
-                task = e.submit(self.gif_obj.crop_gif, self.selection.box)
-                output = task.result()
-            if output:
-                startfile(realpath(output))
-            return 'done'
+            self._hide_and_pause()
+            crop_box = self.selection.box
+            output = self.gif_obj.crop_export(crop_box)
+            OUTPUT_FILE(output)
+            self._unhide_and_play()
 
         if event == '-RESET_BTN-':
             self.selection.clear()
@@ -83,7 +85,6 @@ class Controller:
         )
         thread.start()
 
-
     def _frame_events(self, n_frames: int, stop):
         """
         Needs to be called withing a thread.\n
@@ -99,3 +100,12 @@ class Controller:
             sleep(0.01)
             frame = (frame + 1) % n_frames
             self.view.write_event_value('NextFrame', frame)
+
+    def _hide_and_pause(self):
+        self.view.hide()
+        self.stop_animation = True
+
+    def _unhide_and_play(self):
+        self.view.un_hide()
+        self.stop_animation = False
+        self._start_gif_thread()
