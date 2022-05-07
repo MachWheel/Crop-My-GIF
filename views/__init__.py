@@ -4,10 +4,10 @@ from os.path import realpath
 import PySimpleGUI as sg
 
 from model.units import Pixels
-from view._icons import CLOCK
-from view._labels import EXPORTING
+from views._icons import CLOCK
+from views._labels import EXPORTING
 
-def CROP_GIF(img_size: Pixels):
+def CROP_GIF_VIEW(img_size: Pixels):
     layout = [
         [sg.Graph(
             canvas_size=(img_size.x, img_size.y),
@@ -53,7 +53,7 @@ def _CROP_INFO_FRAME():
     )
 
 
-def LOADING(mode: str, current_i, max_i):
+def LOADING_VIEW(mode: str, current_i, max_i):
     return sg.one_line_progress_meter(
         title=f'{mode.capitalize()} {max_i} GIF frames',
         current_value=current_i + 1,
@@ -67,18 +67,17 @@ def LOADING(mode: str, current_i, max_i):
     )
 
 
-def EXPORT_PROGRESS(bar_max=100):
+def PROGRESS_VIEW(bar_max=100):
     layout = [
         [sg.Text(EXPORTING, key='-TXT-', font='Default 12 bold')],
         [sg.ProgressBar(
             bar_max, orientation='h', size=(50, 20), key='-PROG-', bar_color='#ff009b'
-        )],
-        [sg.Cancel()]
+        )]
     ]
     return sg.Window('Exporting...', layout)
 
 
-def OUTPUT_FILE(output):
+def OUTPUT_VIEW(output):
     open_file = sg.popup_yes_no(
         'Cropped GIF exported!\n'
         'Would you like to open it?'

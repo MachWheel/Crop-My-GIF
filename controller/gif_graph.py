@@ -1,12 +1,12 @@
-from gif_object import GifObject
+from model.gif_frames import GifFrames
 from model.units import CropSelection
 
 
 class GifGraph:
-    def __init__(self, view, gif: GifObject):
+    def __init__(self, view, gif_frames: GifFrames):
         self.graph = view['-GRAPH-']
         self.location = (0, 0)
-        self.gif_display = gif
+        self.gif_frames = gif_frames
         self.drawing = None
         self.current_frame = None
         self.colors = ['red', 'white']
@@ -18,7 +18,7 @@ class GifGraph:
     def animate(self, index):
         self.graph.delete_figure(self.current_frame)
         self.current_frame = self.graph.draw_image(
-            data=self.gif_display.frames[index],
+            data=self.gif_frames.loaded[index],
             location=self.location
         )
 

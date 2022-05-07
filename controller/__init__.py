@@ -3,32 +3,24 @@ from time import sleep
 
 import PySimpleGUI as sg
 
-from gif_object import GifObject
+from model.gif_cropper import GifCropper
+from model.gif_frames import GifFrames
+from model.gif_info import GifInfo
 from model.units import CropSelection
-from view import CROP_GIF, OUTPUT_FILE
+from views import CROP_GIF_VIEW, OUTPUT_VIEW
 from .crop_info import CropInfo
 from .gif_graph import GifGraph
 
 
 class Controller:
-    def _get_view(self):
-        return CROP_GIF(self.gif_obj.display_size)
-
-    def _get_graph(self):
-        return GifGraph(self.view, self.gif_obj)
-
-    def _get_info(self):
-        return CropInfo(self.view, self.gif_obj)
-
-    def __init__(self, gif_file):
+    def __init__(self, info: GifInfo, frames: GifFrames):
         """
         Initializes a Controller instance
-
         """
-        self.gif_obj = GifObject(gif_file)
-        self.view = self._get_view()
-        self.gif_graph = self._get_graph()
-        self.crop_info = self._get_info()
+        self.gif_info = info
+        self.view = CROP_GIF_VIEW(info.display_size)
+        self.crop_info = CropInfo(self.view, info)
+        self.gif_graph = GifGraph(self.view, frames)
         self.selection = CropSelection()
         self.stop_animation = False
         self._start_gif_thread()
@@ -36,7 +28,7 @@ class Controller:
     def read_events(self) -> str | None:
         """
         Reads window events and returns 'done'
-        if the execution finishes. \n
+        if the execution finishes.
         """
         event, values = self.view.read(timeout=50)
 
@@ -59,8 +51,9 @@ class Controller:
                 return
             self._hide_and_pause()
             crop_box = self.selection.box
-            output = self.gif_obj.crop_export(crop_box)
-            OUTPUT_FILE(output)
+            cropper = GifCropper(self.gif_info, crop_box)
+            output = cropper.export_gif()
+            OUTPUT_VIEW(output)
             self._unhide_and_play()
 
         if event == '-RESET_BTN-':
@@ -78,7 +71,7 @@ class Controller:
         thread = Thread(
             target=self._frame_events,
             args=(
-                self.gif_obj.n_frames,
+                self.gif_info.n_frames,
                 lambda: self.stop_animation,
             ),
             daemon=True
@@ -87,10 +80,10 @@ class Controller:
 
     def _frame_events(self, n_frames: int, stop):
         """
-        Needs to be called withing a thread.\n
-        Generates an event ('NextFrame', n) \n
-        every 0.01 second, where 'n' is the \n
-        current gif frame.
+        Needs to be called within a thread.
+        Generates an event **('NextFrame', n)**
+        every **0.01 second**, where '**n**' is the
+        **current gif frame**.
         """
         frame = 0
         while True:
