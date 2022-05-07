@@ -1,4 +1,3 @@
-from concurrent.futures import Future
 from os import startfile
 from os.path import realpath
 
@@ -6,7 +5,7 @@ import PySimpleGUI as sg
 
 from model.units import Pixels
 from view._icons import CLOCK
-
+from view._labels import EXPORTING
 
 def CROP_GIF(img_size: Pixels):
     layout = [
@@ -68,15 +67,15 @@ def LOADING(mode: str, current_i, max_i):
     )
 
 
-def EXPORT_PROGRESS(task: Future[str], max_i: int):
-    i = 0
-    while task.running():
-        i += 1
-        LOADING('processing', i, max_i)
-        if i < max_i - 1:
-            continue
-        i = 0
-    sg.one_line_progress_meter_cancel(key='-PROG-')
+def EXPORT_PROGRESS(bar_max=100):
+    layout = [
+        [sg.Text(EXPORTING, key='-TXT-', font='Default 12 bold')],
+        [sg.ProgressBar(
+            bar_max, orientation='h', size=(50, 20), key='-PROG-', bar_color='#ff009b'
+        )],
+        [sg.Cancel()]
+    ]
+    return sg.Window('Exporting...', layout)
 
 
 def OUTPUT_FILE(output):

@@ -1,4 +1,4 @@
-from model.gif_object import GifObject
+from gif_object import GifObject
 from model.units import CropBox, Pixels
 
 

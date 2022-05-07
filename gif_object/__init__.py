@@ -4,12 +4,13 @@ from os.path import splitext
 
 from PIL import Image
 from imageio import v3 as iio
-from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.video.fx.crop import crop
-from screeninfo import get_monitors
+from moviepy.video.io.VideoFileClip import VideoFileClip
 
-from view import LOADING, EXPORT_PROGRESS
-from .units import Pixels, CropBox
+from ._export import export_progress
+from ._import import get_monitor_area, get_gif_info
+from model.units import Pixels, CropBox
+from view import LOADING
 
 
 class GifObject:
@@ -25,7 +26,7 @@ class GifObject:
         attributes.
         """
         self.file = file
-        self.size, self.n_frames = _get_gif_info(file)
+        self.size, self.n_frames = get_gif_info(file)
         self.resize_factor = self._get_resize()
         self.frames = self._load_frames()
         print(len(self.frames), 'frames loaded')
@@ -42,7 +43,17 @@ class GifObject:
         return Pixels(width, height)
 
 
-    def crop_gif(self, box: CropBox) -> str:
+    def crop_export(self, box: CropBox):
+        with ThreadPoolExecutor() as e:
+            task = e.submit(
+                self._crop_file, box
+            )
+            export_progress(task)
+            result = task.result()
+        return result
+
+
+    def _crop_file(self, box: CropBox) -> str:
         """
         Crops current gif file within the specified
         coordinates **CropBox(x0, y0, x1, y1)**
@@ -61,7 +72,7 @@ class GifObject:
         Gets the optimal gif display resize factor
         as a float number.
         """
-        screen = _get_monitor_area()
+        screen = get_monitor_area()
         x, y = self.size.x, self.size.y
         if x <= screen.x and y <= screen.y:
             return 1.0
@@ -116,37 +127,3 @@ class GifObject:
             with BytesIO() as output:
                 img.save(output, format='png')
                 return output.getvalue()
-
-
-    def crop_export(self, box: CropBox):
-        with ThreadPoolExecutor() as e:
-            task = e.submit(
-                self.crop_gif, box
-            )
-            EXPORT_PROGRESS(task, self.n_frames)
-            result = task.result()
-        return result
-
-
-def _get_monitor_area(factor=0.7) -> Pixels:
-    """
-    Gets the available monitor display
-    resolution for the gif object.
-    """
-    w, h = 10000, 10000
-    for m in get_monitors():
-        if m.width < w and m.height < h:
-            w, h = m.width, m.height
-    w, h = int(w * factor), int(h * factor),
-    return Pixels(w, h)
-
-
-def _get_gif_info(file) -> tuple[Pixels, int]:
-    """
-    Returns the gif file size as
-    **Pixels(x, y)**, and its number
-    of frames as **int**
-    """
-    gif_img = Image.open(file)
-    n_frames = gif_img.n_frames
-    return Pixels(*gif_img.size), n_frames

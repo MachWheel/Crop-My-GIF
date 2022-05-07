@@ -3,7 +3,7 @@ from time import sleep
 
 import PySimpleGUI as sg
 
-from model.gif_object import GifObject
+from gif_object import GifObject
 from model.units import CropSelection
 from view import CROP_GIF, OUTPUT_FILE
 from .crop_info import CropInfo
