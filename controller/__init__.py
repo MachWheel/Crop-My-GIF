@@ -1,6 +1,3 @@
-from threading import Thread
-from time import sleep
-
 import PySimpleGUI as sg
 
 from model.gif_cropper import GifCropper
@@ -8,6 +5,7 @@ from model.gif_frames import GifFrames
 from model.gif_info import GifInfo
 from model.units import CropSelection
 from views import CROP_GIF_VIEW, OUTPUT_VIEW
+from .animation import Animation
 from .crop_info import CropInfo
 from .gif_graph import GifGraph
 
@@ -21,9 +19,9 @@ class Controller:
         self.view = CROP_GIF_VIEW(info.display_size)
         self.crop_info = CropInfo(self.view, info)
         self.gif_graph = GifGraph(self.view, frames)
+        self.animation = Animation(self.view, info)
         self.selection = CropSelection()
-        self.stop_animation = False
-        self._start_gif_thread()
+        self.animation.start()
 
     def read_events(self) -> str | None:
         """
@@ -49,56 +47,13 @@ class Controller:
         if event == '-CROP_BTN-':
             if self.selection.still_selecting:
                 return
-            self._hide_and_pause()
+            self.animation.hide_and_pause()
             crop_box = self.selection.box
             cropper = GifCropper(self.gif_info, crop_box)
             output = cropper.export_gif()
             OUTPUT_VIEW(output)
-            self._unhide_and_play()
+            self.animation.unhide_and_resume()
 
         if event == '-RESET_BTN-':
             self.selection.clear()
             self.crop_info.clear()
-
-
-    def _start_gif_thread(self):
-        """
-        Starts a thread that generates an
-        event ('NextFrame', n) every 0.01
-        second, where 'n' is the current
-        gif frame.
-        """
-        thread = Thread(
-            target=self._frame_events,
-            args=(
-                self.gif_info.n_frames,
-                lambda: self.stop_animation,
-            ),
-            daemon=True
-        )
-        thread.start()
-
-    def _frame_events(self, n_frames: int, stop):
-        """
-        Needs to be called within a thread.
-        Generates an event **('NextFrame', n)**
-        every **0.01 second**, where '**n**' is the
-        **current gif frame**.
-        """
-        frame = 0
-        while True:
-            if stop():
-                print('thread killed')
-                break
-            sleep(0.01)
-            frame = (frame + 1) % n_frames
-            self.view.write_event_value('NextFrame', frame)
-
-    def _hide_and_pause(self):
-        self.view.hide()
-        self.stop_animation = True
-
-    def _unhide_and_play(self):
-        self.view.un_hide()
-        self.stop_animation = False
-        self._start_gif_thread()
