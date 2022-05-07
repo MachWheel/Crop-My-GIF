@@ -15,15 +15,15 @@ class CropInfo:
         box = _fix_inverted_box(box)
         crop = _real_box_size(self._resize, box)
         if (crop.x1 or crop.y1) is not None:
-            self._set_all_info(crop)
-        self._set_start_info(crop)
-        return
+            return self._set_all_info(crop)
+        return self._set_start_info(crop)
 
 
     def clear(self):
-        self._start_txt.update('None')
-        self._end_txt.update('None')
-        self._size_txt.update('None')
+        txt = 'Click GIF'
+        self._start_txt.update(txt)
+        self._end_txt.update(txt)
+        self._size_txt.update(txt)
         self._set_btns_state(disabled=True)
 
 
@@ -66,7 +66,9 @@ def _format_all_info(box: CropBox) -> tuple[str, str, str]:
 
 
 def _fix_inverted_box(box: CropBox) -> CropBox:
-    if box.x0 < box.x1 and box.y0 < box.y1:
+    if (box.x1 or box.y1) is None:
+        return box
+    elif box.x0 < box.x1 and box.y0 < box.y1:
         return box
     start = box.x1, box.y1
     end = box.x0, box.y0

@@ -23,21 +23,22 @@ def CROP_GIF_VIEW(img_size: Pixels):
 
 
 def _CROP_INFO_FRAME():
+    default_txt = 'Click GIF'
     bold = "Default 10 bold"
     underline = "Default 10 bold underline"
     layout = [
         sg.Frame("Left / Top:", [[
-            sg.Text("", key="-START-", font=bold)
+            sg.Text(default_txt, key="-START-", font=bold)
         ]]),
         sg.T('to'),
         sg.Frame("Right / Bottom:", [[
-            sg.Text("", key="-END-", font=bold)
+            sg.Text(default_txt, key="-END-", font=bold)
         ]]),
         sg.Button(
             "Clear Selection", key="-RESET_BTN-", disabled=True,
             font=bold, button_color=('white', 'red4')),
         sg.Frame("New size:", [[
-            sg.Text("", key="-BOX-", font=bold, text_color='blue')
+            sg.Text(default_txt, key="-BOX-", font=bold, text_color='blue')
         ]]),
         sg.Button(
             "CROP", key="-CROP_BTN-", disabled=True,
