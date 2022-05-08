@@ -41,7 +41,7 @@ class Controller:
 
         if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
             self.selection.update(values['-GRAPH-'])
-            self.crop_info.update(self.selection.real_box)
+            self.crop_info.update_info(self.selection.real_box)
             self.gif_graph.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':
@@ -49,8 +49,9 @@ class Controller:
                 return
             self.animation.hide_and_pause()
             crop_box = self.selection.real_box
+            preserve_fps = self.crop_info.preserve_fps
             cropper = GifCropper(self.gif_info, crop_box)
-            output = cropper.export_gif()
+            output = cropper.export_gif(preserve_fps)
             OUTPUT_VIEW(output)
             self.animation.unhide_and_resume()
 

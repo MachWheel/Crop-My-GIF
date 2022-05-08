@@ -5,7 +5,11 @@ import PySimpleGUI as sg
 
 from model.units import Pixels
 from views._icons import CLOCK
-from views._labels import EXPORTING
+from . import _frames
+from ._labels import (
+    MAIN_WINDOW_TITLE, BAR_COLOR, EXPORTING_MSG,
+    F_BOLD_12, EXPORTING_WINDOW_TITLE, EXPORTED_MSG
+)
 
 
 def CROP_GIF_VIEW(img_size: Pixels):
@@ -18,71 +22,43 @@ def CROP_GIF_VIEW(img_size: Pixels):
             enable_events=True,
             background_color='green'
         )],
-        [_CROP_INFO_FRAME()],
+        [_frames.SELECTION_FRAME(), _frames.CROP_FRAME()],
     ]
-    return sg.Window("Crop GIF", layout, finalize=True, element_justification='center')
-
-
-def _CROP_INFO_FRAME():
-    default_txt = 'Click GIF'
-    bold = "Default 10 bold"
-    underline = "Default 10 bold underline"
-    layout = [
-        sg.Frame("Left / Top:", [[
-            sg.Text(default_txt, key="-START-", font=bold)
-        ]]),
-        sg.T('to'),
-        sg.Frame("Right / Bottom:", [[
-            sg.Text(default_txt, key="-END-", font=bold)
-        ]]),
-        sg.Button(
-            "Clear Selection", key="-RESET_BTN-", disabled=True,
-            font=bold, button_color=('white', 'red4')),
-        sg.Frame("New size:", [[
-            sg.Text(default_txt, key="-BOX-", font=bold, text_color='blue')
-        ]]),
-        sg.Button(
-            "CROP", key="-CROP_BTN-", disabled=True,
-            font=bold, button_color=('white', 'blue4')
-        ),
-    ]
-    return sg.Frame(
-        title='SIZE FROM:',
-        layout=[layout],
-        expand_x=True,
-        font=underline,
-        size=(600, 70)
+    return sg.Window(
+        title=MAIN_WINDOW_TITLE,
+        layout=layout,
+        finalize=True,
+        element_justification='center'
     )
 
-
 def LOADING_VIEW(mode: str, current_i, max_i):
+    title = f'{mode.capitalize()} {max_i} GIF frames'
     return sg.one_line_progress_meter(
-        title=f'{mode.capitalize()} {max_i} GIF frames',
+        title=title,
         current_value=current_i + 1,
         max_value=max_i,
         key='-PROG-',
         orientation='h',
         no_button=True,
         keep_on_top=True,
-        bar_color='#d97ff0',
+        bar_color=BAR_COLOR,
         size=(38, 8)
     )
 
-
 def PROGRESS_VIEW(bar_max=100):
     layout = [
-        [sg.Text(EXPORTING, key='-TXT-', font='Default 12 bold')],
+        [sg.Text(EXPORTING_MSG, key='-TXT-', font=F_BOLD_12)],
         [sg.ProgressBar(
-            bar_max, orientation='h', size=(50, 20), key='-PROG-', bar_color='#ff009b'
+            bar_max,
+            orientation='h',
+            size=(50, 20),
+            key='-PROG-',
+            bar_color=BAR_COLOR
         )]
     ]
-    return sg.Window('Exporting...', layout)
-
+    return sg.Window(EXPORTING_WINDOW_TITLE, layout)
 
 def OUTPUT_VIEW(output):
-    open_file = sg.popup_yes_no(
-        'Cropped GIF exported!\n'
-        'Would you like to open it?'
-    )
+    open_file = sg.popup_yes_no(EXPORTED_MSG)
     if open_file == 'Yes':
         startfile(realpath(output))

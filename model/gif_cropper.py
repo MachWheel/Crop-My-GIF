@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, Future
 from os.path import splitext
 
+from imageio import v3 as iio
 from moviepy.video.fx.crop import crop
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
@@ -14,8 +15,9 @@ class GifCropper:
     def __init__(self, gif_info: GifInfo, box: CropBox):
         self.info = gif_info
         self.box = box
+        self.output = None
 
-    def export_gif(self):
+    def export_gif(self, preserve_fps: bool):
         """
         Executes a threaded call to GifCropper **_crop_file()**
         function, which crops the current gif file according to
@@ -23,19 +25,33 @@ class GifCropper:
         Returns the output file name.
         """
         with ThreadPoolExecutor() as e:
-            task = e.submit(self._crop_file)
+            task = e.submit(self._crop_file, preserve_fps)
             _show_progress(task)
             result = task.result()
         return result
 
-    def _crop_file(self) -> str:
+    def _crop_file(self, preserve_fps: bool) -> str:
         file = self.info.gif_file
         output = f"{splitext(file)[0]}_CROP.gif"
         gif = VideoFileClip(file).subclip(0)
         cropped = crop(gif, *self.box)
-        cropped.write_gif(filename=output, program='ffmpeg', fps=30)
+        _write_output(output, cropped)
+        if preserve_fps:
+            in_n_frames = self.info.n_frames
+            fps = _real_fps_from_out_diff(output, in_n_frames)
+            _write_output(output, cropped, fps)
         return output
 
+
+def _write_output(output, file, fps=20.0):
+    file.write_gif(filename=output, program='ffmpeg', fps=fps)
+
+def _real_fps_from_out_diff(output, in_n_frames: int, input_fps=20.0):
+    out_n_frames = 0
+    for _ in iio.imiter(output):
+        out_n_frames += 1
+    fps = (in_n_frames * input_fps) / out_n_frames
+    return fps
 
 def _show_progress(task: Future[str]):
     bar_max = 100
