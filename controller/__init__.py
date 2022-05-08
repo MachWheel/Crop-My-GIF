@@ -42,7 +42,6 @@ class Controller:
         if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
             self.selection.update(values['-GRAPH-'])
             self.crop_info.update(self.selection.real_box)
-            print(self.selection.real_box)
             self.gif_graph.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':

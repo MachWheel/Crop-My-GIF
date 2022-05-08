@@ -7,6 +7,7 @@ from model.units import Pixels
 from views._icons import CLOCK
 from views._labels import EXPORTING
 
+
 def CROP_GIF_VIEW(img_size: Pixels):
     layout = [
         [sg.Graph(
