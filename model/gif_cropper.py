@@ -13,7 +13,7 @@ from .gif_info import GifInfo
 class GifCropper:
     def __init__(self, gif_info: GifInfo, box: CropBox):
         self.info = gif_info
-        self.box = CropBox(*[int(n / gif_info.resize_factor) for n in box])
+        self.box = box
 
     def export_gif(self):
         """

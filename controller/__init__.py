@@ -41,7 +41,7 @@ class Controller:
 
         if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
             self.selection.update(values['-GRAPH-'])
-            self.crop_info.update(self.selection.box)
+            self.crop_info.update(self.selection.real_box)
             print(self.selection.real_box)
             self.gif_graph.draw_selection(self.selection)
 
@@ -49,7 +49,7 @@ class Controller:
             if self.selection.half_selected:
                 return
             self.animation.hide_and_pause()
-            crop_box = self.selection.box
+            crop_box = self.selection.real_box
             cropper = GifCropper(self.gif_info, crop_box)
             output = cropper.export_gif()
             OUTPUT_VIEW(output)
