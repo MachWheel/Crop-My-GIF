@@ -20,7 +20,7 @@ class Controller:
         self.crop_info = CropInfo(self.view, info)
         self.gif_graph = GifGraph(self.view, frames)
         self.animation = Animation(self.view, info)
-        self.selection = CropSelection()
+        self.selection = CropSelection(info.resize_factor)
         self.animation.start()
 
     def read_events(self) -> str | None:
@@ -42,10 +42,11 @@ class Controller:
         if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
             self.selection.update(values['-GRAPH-'])
             self.crop_info.update(self.selection.box)
+            print(self.selection.real_box)
             self.gif_graph.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':
-            if self.selection.still_selecting:
+            if self.selection.half_selected:
                 return
             self.animation.hide_and_pause()
             crop_box = self.selection.box
