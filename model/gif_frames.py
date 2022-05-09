@@ -4,7 +4,7 @@ from io import BytesIO
 from PIL import Image
 from imageio import v3 as iio
 
-from views import LOADING_VIEW
+from views import PROGRESS_VIEW
 from .gif_info import GifInfo
 
 
@@ -14,17 +14,25 @@ class GifFrames:
         Loads all gif file frames to **self.loaded**
         based on the **gif_info: GifInfo** object specified.
         """
-        frames = iio.imiter(gif_info.gif_file)
-        with ThreadPoolExecutor() as e:
-            i, results = 0, []
-            for frame in frames:
-                results.append(e.submit(frame_to_ram, frame, gif_info))
-                LOADING_VIEW('loading', i, gif_info.n_frames)
-                i += 1
-        self.loaded = [data.result() for data in results]
+        frames = _frame_loader(gif_info)
+        self.loaded = [data.result() for data in frames]
 
 
-def frame_to_ram(frame: iio, gif_info: GifInfo) -> bytes:
+def _frame_loader(info: GifInfo):
+    frames = iio.imiter(info.gif_file)
+    with ThreadPoolExecutor() as e:
+        i, results = 0, []
+        loading = PROGRESS_VIEW(bar_end=info.n_frames)
+        for frame in frames:
+            loading.read(timeout=10)
+            loading['-PROG-'].update(i + 1)
+            results.append(e.submit(_load_frame, frame, info))
+            i += 1
+        loading.close()
+    return results
+
+
+def _load_frame(frame: iio, gif_info: GifInfo) -> bytes:
     """
     Resizes a gif frame if necessary
     and loads it into memory, returning

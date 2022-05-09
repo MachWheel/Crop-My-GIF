@@ -16,5 +16,6 @@ PRESERVE_FPS_TOOLTIP = (
     f'Takes longer to export.'
 )
 EXPORTING_MSG = 'Exporting cropped GIF file...'
+def IMPORTING_MSG(n_frames: int): return f'Loading {n_frames} GIF frames'
 EXPORTED_MSG = (f'Cropped GIF exported!\n'
                 f'Would you like to open it?')

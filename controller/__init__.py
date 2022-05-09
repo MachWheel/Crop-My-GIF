@@ -17,11 +17,17 @@ class Controller:
         """
         self.gif_info = info
         self.view = CROP_GIF_VIEW(info.display_size)
-        self.crop_info = CropInfo(self.view, info)
-        self.gif_graph = GifGraph(self.view, frames)
+        self.info = CropInfo(self.view, info)
+        self.graph = GifGraph(self.view, frames)
         self.animation = Animation(self.view, info)
         self.selection = CropSelection(info.resize_factor)
         self.animation.start()
+
+    def get_cropper(self):
+        info = self.gif_info
+        box = self.selection.real_box
+        preserve_fps = self.info.preserve_fps
+        return GifCropper(info, box, preserve_fps)
 
     def read_events(self) -> str | None:
         """
@@ -31,30 +37,30 @@ class Controller:
         event, values = self.view.read(timeout=50)
 
         if event == sg.WINDOW_CLOSED:
+            self.view.close()
             return 'done'
 
         if event == 'NextFrame':
             index = values.get('NextFrame', 0)
-            self.gif_graph.animate(index)
-            if self.gif_graph.drawing:
-                self.gif_graph.draw_selection(self.selection)
+            self.graph.draw_gif_frame(index)
+            if self.graph.drawing:
+                self.graph.draw_selection(self.selection)
 
-        if ('-GRAPH-' in event) and (None not in values['-GRAPH-']):
+        if (('-GRAPH-' in event) and
+                (None not in values['-GRAPH-'])):
             self.selection.update(values['-GRAPH-'])
-            self.crop_info.update_info(self.selection.real_box)
-            self.gif_graph.draw_selection(self.selection)
+            self.info.update_info(self.selection.real_box)
+            self.graph.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':
             if self.selection.half_selected:
                 return
             self.animation.hide_and_pause()
-            crop_box = self.selection.real_box
-            preserve_fps = self.crop_info.preserve_fps
-            cropper = GifCropper(self.gif_info, crop_box)
-            output = cropper.export_gif(preserve_fps)
+            cropper = self.get_cropper()
+            output = cropper.export_gif()
             OUTPUT_VIEW(output)
             self.animation.unhide_and_resume()
 
         if event == '-RESET_BTN-':
             self.selection.clear()
-            self.crop_info.clear()
+            self.info.clear()

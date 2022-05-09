@@ -11,17 +11,15 @@ class GifGraph:
         self.current_frame = None
         self.colors = ['red', 'white']
         self.current_color = 0
-        self.animate(0)
+        self.draw_gif_frame(0)
         return
 
-
-    def animate(self, index):
+    def draw_gif_frame(self, index):
         self.graph.delete_figure(self.current_frame)
         self.current_frame = self.graph.draw_image(
             data=self.gif_frames.loaded[index],
             location=self.location
         )
-
 
     def draw_selection(self, selection: CropSelection):
         self.current_color = int(not self.current_color)
@@ -31,14 +29,12 @@ class GifGraph:
         else:
             self._draw_box(selection)
 
-
     def _draw_start(self, selection):
         self.drawing = self.graph.draw_point(
             point=selection.start,
             size=10,
             color=self.colors[self.current_color]
         )
-
 
     def _draw_box(self, selection):
         self.drawing = self.graph.draw_rectangle(
