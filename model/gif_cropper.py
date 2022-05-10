@@ -1,4 +1,4 @@
-from concurrent.futures import ThreadPoolExecutor, Future
+from concurrent.futures import ThreadPoolExecutor
 from os.path import splitext
 from typing import Any
 
