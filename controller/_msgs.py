@@ -1,3 +1,5 @@
+from random import choice
+
 from model import units
 
 
@@ -12,3 +14,14 @@ def NEW_SIZE_TXT(box: units.CropBox):
     new_h = abs(box.y1 - box.y0 + 1)
     size = units.Pixels(new_w, new_h)
     return f"New size:\n{size.x}x{size.y} px"
+
+
+def SLOW_EXPORTING() -> str:
+    return choice([
+        "This might take some time...",
+        "Sorry to keep you waiting...",
+        "Holy ****! That's a huge file...",
+        "That's a large GIF you have huh...",
+        "Still going...",
+        "Almost there...",
+    ])

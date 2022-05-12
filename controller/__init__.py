@@ -1,17 +1,15 @@
 import PySimpleGUI as sg
 
-from model.gif_cropper import GifCropper
-from model.gif_frames import GifFrames
-from model.gif_info import GifInfo
-from model import units
+import model
 from views import CROP_GIF_VIEW, OUTPUT_VIEW
 from .animation import Animation
 from .crop_info import CropInfo
+from .gif_cropper import GifCropper
 from .gif_graph import GifGraph
 
 
 class Controller:
-    def __init__(self, info: GifInfo, frames: GifFrames):
+    def __init__(self, info: model.GifInfo, frames: model.GifFrames):
         """
         Initializes a Controller instance
         """
@@ -20,7 +18,7 @@ class Controller:
         self.info = CropInfo(self.view, info)
         self.graph = GifGraph(self.view, frames)
         self.animation = Animation(self.view, info)
-        self.selection = units.CropSelection(info.resize_factor)
+        self.selection = model.units.CropSelection(info.resize_factor)
         self.animation.start()
 
     def get_cropper(self):
