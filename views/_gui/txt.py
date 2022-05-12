@@ -6,7 +6,7 @@ DEFAULT_INFO = 'Click GIF'
 SELECT_FRAME = "SELECTED GIF AREA"
 CROP_FRAME = "CROP MY GIF"
 RESET_BTN = "Clear Selection"
-CROP_BTN = "CROP GIF"
+CROP_BTN = "Crop My GIF"
 PRESERVE_CHECK = 'Preserve FPS'
 PRESERVE_FPS_TOOLTIP = (
     f'If checked, the crop GIF file will have\n'
