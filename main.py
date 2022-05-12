@@ -16,11 +16,10 @@ def set_windows_dpi():
             windll.shcore.SetProcessDpiAwareness(1)
 
 
-def main(info: model.GifInfo, frames: model.GifFrames):
-    controller = Controller(info, frames)
+def main(application: Controller):
     state = ''
     while state != 'done':
-        state = controller.read_events()
+        state = application.read_events()
     return
 
 
@@ -29,6 +28,7 @@ if __name__ == "__main__":
     file = GET_FILE_VIEW()
     if not file or not isfile(file):
         raise SystemExit('No file selected')
-    gif_info = model.GifInfo(file)
-    gif_frames = model.GifFrames(gif_info)
-    main(gif_info, gif_frames)
+    info = model.GifInfo(file)
+    frames = model.GifFrames(info)
+    controller = Controller(info, frames)
+    main(controller)
