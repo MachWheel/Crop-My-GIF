@@ -1,3 +1,6 @@
+SELECT_FILE = 'Select a GIF to crop'
+BROWSE_TITLE = 'Browse GIF'
+GIF_EXTENSION = ('GIF', '*.gif')
 MAIN_TITLE = "Crop My GIF"
 EXPORTING_TITLE = 'Exporting cropped GIF file...'
 DEFAULT_INFO = 'Click GIF'

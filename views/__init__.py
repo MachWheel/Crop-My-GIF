@@ -7,6 +7,14 @@ from model.units import Pixels
 from ._gui import SELECTION_FRAME, CROP_FRAME, txt, style
 
 
+def GET_FILE_VIEW():
+    return sg.popup_get_file(
+        message=txt.SELECT_FILE,
+        title=txt.BROWSE_TITLE,
+        file_types=(txt.GIF_EXTENSION,)
+    )
+
+
 def CROP_GIF_VIEW(img_size: Pixels):
     layout = [
         [sg.Graph(
