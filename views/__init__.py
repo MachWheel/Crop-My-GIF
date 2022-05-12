@@ -10,7 +10,7 @@ from ._gui import SELECTION_FRAME, CROP_FRAME, txt, style
 def GET_FILE_VIEW():
     return sg.popup_get_file(
         message=txt.SELECT_FILE,
-        title=txt.BROWSE_TITLE,
+        title=txt.APP_TITLE,
         file_types=(txt.GIF_EXTENSION,)
     )
 
@@ -28,7 +28,7 @@ def CROP_GIF_VIEW(img_size: Pixels):
         [SELECTION_FRAME(), CROP_FRAME()],
     ]
     return sg.Window(
-        title=txt.MAIN_TITLE,
+        title=txt.APP_TITLE,
         layout=layout,
         finalize=True,
         element_justification='center'
