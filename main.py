@@ -3,9 +3,8 @@ import platform
 
 import PySimpleGUI as sg
 
+import model
 from controller import Controller
-from model.gif_frames import GifFrames
-from model.gif_info import GifInfo
 
 
 def set_windows_dpi():
@@ -16,22 +15,22 @@ def set_windows_dpi():
             ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 
-def main(info: GifInfo, frames: GifFrames):
+def main(info: model.GifInfo, frames: model.GifFrames):
     controller = Controller(info, frames)
-    while True:
+    state = ''
+    while state != 'done':
         state = controller.read_events()
-        if state == 'done':
-            break
-
+    return
 
 if __name__ == "__main__":
     set_windows_dpi()
-    file_name = sg.popup_get_file(
-        'Select a GIF to crop',
-        'Browse GIF',
-        file_types=(('GIF', '*.gif'),)
-    )
-    if file_name:
-        gif_info = GifInfo(file_name)
-        gif_frames = GifFrames(gif_info)
-        main(gif_info, gif_frames)
+    file = None
+    while not file:
+        file = sg.popup_get_file(
+            'Select a GIF to crop',
+            'Browse GIF',
+            file_types=(('GIF', '*.gif'),)
+        )
+    gif_info = model.GifInfo(file)
+    gif_frames = model.GifFrames(gif_info)
+    main(gif_info, gif_frames)
