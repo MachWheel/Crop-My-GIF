@@ -15,20 +15,12 @@ class GifInfo:
 
     @property
     def display_size(self) -> Pixels:
-        """
-        Returns gif current displaying
-        size as **Pixels(x, y)**
-        """
         width = int(self.size.x * self.resize_factor)
         height = int(self.size.y * self.resize_factor)
         return Pixels(width, height)
 
 
 def _get_resize_factor(size: Pixels, monitor_area=0.7) -> float:
-    """
-    Gets the available monitor display
-    resolution for the gif object.
-    """
     w, h = 100000, 100000
     for mon in get_monitors():
         if mon.width < w and mon.height < h:

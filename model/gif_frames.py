@@ -10,10 +10,6 @@ from .gif_info import GifInfo
 
 class GifFrames:
     def __init__(self, gif_info: GifInfo):
-        """
-        Loads all gif file frames to **self.loaded**
-        based on the **gif_info: GifInfo** object specified.
-        """
         frames = _frame_loader(gif_info)
         self.loaded = [data.result() for data in frames]
 
@@ -33,11 +29,6 @@ def _frame_loader(info: GifInfo):
 
 
 def _load_frame(frame: iio, gif_info: GifInfo) -> bytes:
-    """
-    Resizes a gif frame if necessary
-    and loads it into memory, returning
-    it's contents as *bytes*.
-    """
     if gif_info.resize_factor == 1.0:
         with BytesIO() as output:
             iio.imwrite(output, frame, format_hint='.png')

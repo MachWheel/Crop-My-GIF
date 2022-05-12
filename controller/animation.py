@@ -13,12 +13,6 @@ class Animation:
         self.stop_animation = False
 
     def start(self):
-        """
-        Starts a thread that generates an
-        event ('NextFrame', n) every 0.01
-        second, where 'n' is the current
-        gif frame.
-        """
         frames_thread = Thread(
             target=self._frame_events,
             args=(
@@ -30,12 +24,6 @@ class Animation:
         frames_thread.start()
 
     def _frame_events(self, n_frames: int, stop):
-        """
-        Needs to be called within a thread.
-        Generates an event **('NextFrame', n)**
-        every **0.01 second**, where '**n**' is the
-        **current gif frame**.
-        """
         print('Animation thread started.')
         frame = 0
         while True:
