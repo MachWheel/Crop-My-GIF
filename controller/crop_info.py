@@ -1,4 +1,4 @@
-from controller._msgs import START_TXT, END_TXT, NEW_SIZE_TXT
+from . import _msgs
 from model.gif_info import GifInfo
 from model.units import CropBox
 
@@ -30,15 +30,15 @@ class CropInfo:
         self._set_inputs_state(disabled=True)
 
     def _set_start_info(self, box: CropBox):
-        start_txt = START_TXT(box)
+        start_txt = _msgs.START_TXT(box)
         self._reset_btn.update(disabled=False)
         self._start_txt.update(start_txt, text_color='yellow')
 
     def _set_all_info(self, box: CropBox):
         self._set_inputs_state(disabled=False)
-        self._start_txt.update(START_TXT(box), text_color='white')
-        self._end_txt.update(END_TXT(box))
-        self._size_txt.update(NEW_SIZE_TXT(box), text_color='yellow')
+        self._start_txt.update(_msgs.START_TXT(box), text_color='white')
+        self._end_txt.update(_msgs.END_TXT(box))
+        self._size_txt.update(_msgs.NEW_SIZE_TXT(box), text_color='yellow')
 
     def _set_inputs_state(self, disabled: bool):
         self._reset_btn.update(disabled=disabled)

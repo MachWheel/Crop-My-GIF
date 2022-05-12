@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 from model.gif_cropper import GifCropper
 from model.gif_frames import GifFrames
 from model.gif_info import GifInfo
-from model.units import CropSelection
+from model import units
 from views import CROP_GIF_VIEW, OUTPUT_VIEW
 from .animation import Animation
 from .crop_info import CropInfo
@@ -20,7 +20,7 @@ class Controller:
         self.info = CropInfo(self.view, info)
         self.graph = GifGraph(self.view, frames)
         self.animation = Animation(self.view, info)
-        self.selection = CropSelection(info.resize_factor)
+        self.selection = units.CropSelection(info.resize_factor)
         self.animation.start()
 
     def get_cropper(self):
