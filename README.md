@@ -68,7 +68,7 @@ Done. Now you can run the app typing:
     cd compile
     .\compile.bat
     
-![COMPILE](missing)
+![COMPILE](https://s8.gifyu.com/images/compile-crop-my-gif.gif)
 
   - **The folder containing the generated .exe file will be opened automatically**
 
