@@ -1,7 +1,7 @@
 @ECHO OFF
-TITLE Crop-My-GIF Compiler v2
+TITLE Crop-My-GIF Compiler
 ECHO:
-ECHO Crop-My-GIF Compiler v2
+ECHO Crop-My-GIF Compiler
 ECHO:
 ECHO This batch script compiles Crop-My-GIF application
 ECHO:
