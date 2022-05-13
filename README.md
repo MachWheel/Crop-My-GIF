@@ -55,7 +55,7 @@ Done. Now you can run the app typing:
 
 # How to compile it:
 
-### First: [clone the repository and properly configure its virtualenv (see above)](https://github.com/WyllerMachado/Crop-My-GIF/edit/main/README.md#cloning-the-repository)
+### First: [clone the repository and properly configure its virtualenv (see above)](https://github.com/WyllerMachado/Crop-My-GIF#cloning-the-repository)
 ### Second: change to the directory and activate virtualenv if it is not already activated.
 
     cd Crop-My-GIF
