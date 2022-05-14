@@ -1,10 +1,10 @@
-# Crop-My-GIF
-### *A pratical way to crop large GIF animation files.*
-![MAIN_DEMO](missing)
+# Crop My GIF
+### *A practical way to crop large GIF animation files.*
+![MAIN_DEMO](https://s8.gifyu.com/images/crop-my-gif.gif)
 
 # How to use it
   1. Choose a GIF file 
-  2. Click the image to select the crop start and end areas
+  2. Click the image to select the crop start/end positions
   3. Check if the output size is correct
       - *Press "Clear Selection" if you want to select again*
   4. Check if you want to preserve the input GIF fps
@@ -53,9 +53,9 @@ Done. Now you can run the app typing:
     py main.py
 
 
-# Compiling the application:
+# How to compile it:
 
-### First: [clone the repository and properly configure its virtualenv (see above)](https://github.com/WyllerMachado/Crop-My-GIF/edit/main/README.md#cloning-the-repository)
+### First: [clone the repository and properly configure its virtualenv (see above)](https://github.com/WyllerMachado/Crop-My-GIF#cloning-the-repository)
 ### Second: change to the directory and activate virtualenv if it is not already activated.
 
     cd Crop-My-GIF
@@ -68,7 +68,7 @@ Done. Now you can run the app typing:
     cd compile
     .\compile.bat
     
-![COMPILE](missing)
+![COMPILE](https://s8.gifyu.com/images/compile-crop-my-gif.gif)
 
   - **The folder containing the generated .exe file will be opened automatically**
 
