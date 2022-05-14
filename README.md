@@ -1,6 +1,8 @@
-# Crop My GIF
-### *A practical way to crop large GIF animation files.*
-![MAIN_DEMO](https://s8.gifyu.com/images/crop-my-gif.gif)
+<p align="center"><img src="https://i.imgur.com/lmqmHWo.png" alt="Crop My GIF Logo"></p>
+<h1 align="center">Crop My GIF</h1>
+<p align="center"><i>A practical way to crop large GIF animation files.</i></p>
+
+<p align="center"><img src="https://s8.gifyu.com/images/crop-my-gif.gif" alt="Crop My GIF DEMO"></p>
 
 # How to use it
   1. Choose a GIF file 
