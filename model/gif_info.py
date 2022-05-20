@@ -1,7 +1,7 @@
 from PIL import Image
-from screeninfo import get_monitors
+import screeninfo
 
-from model.units import Pixels
+from .units import Pixels
 
 
 class GifInfo:
@@ -20,16 +20,22 @@ class GifInfo:
         return Pixels(width, height)
 
 
-def _get_resize_factor(size: Pixels, monitor_area=0.7) -> float:
-    w, h = 100000, 100000
-    for mon in get_monitors():
-        if mon.width < w and mon.height < h:
-            w, h = mon.width, mon.height
-    w, h = int(w * monitor_area), int(h * monitor_area)
-    area = Pixels(w, h)
-    if size.x <= area.x and size.y <= area.y:
+def _get_resize_factor(gif_size: Pixels) -> float:
+    usable: Pixels = _usable_area()
+    if gif_size.x <= usable.x and gif_size.y <= usable.y:
         return 1.0
     else:
-        x_resize: float = (area.x / size.x)
-        y_resize: float = (area.y / size.y)
+        x_resize: float = (usable.x / gif_size.x)
+        y_resize: float = (usable.y / gif_size.y)
         return min(x_resize, y_resize)
+
+def _usable_area(default=0.7):
+    w = h = 10 ** 10
+    for monitor in screeninfo.get_monitors():
+        mw, mh = monitor.width, monitor.height
+        if mh < w and mw < h:
+            w, h = mh, mw
+    return Pixels(
+        x=int(w * default),
+        y=int(h * default)
+    )

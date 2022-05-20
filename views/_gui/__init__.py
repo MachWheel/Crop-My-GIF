@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+from model import Pixels
 from . import txt, style
 
 
@@ -48,3 +49,22 @@ def CROP_FRAME():
         vertical_alignment='center',
         element_justification='center'
     )
+
+def GIF_GRAPH(img_size: Pixels):
+    return sg.Graph(
+            canvas_size=(img_size.x, img_size.y),
+            graph_bottom_left=(0, img_size.y),
+            graph_top_right=(img_size.x, 0),
+            key='-GRAPH-',
+            enable_events=True,
+            background_color='green'
+        )
+
+def PROGRESS_BAR(bar_end):
+    return sg.ProgressBar(
+            bar_end,
+            orientation='h',
+            size=(50, 20),
+            key='-PROG-',
+            bar_color=style.BAR_COLOR
+        )

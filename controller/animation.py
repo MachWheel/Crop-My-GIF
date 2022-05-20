@@ -8,16 +8,16 @@ from model.gif_info import GifInfo
 
 class Animation:
     def __init__(self, view: Window, gif_info: GifInfo):
-        self.view = view
-        self.info = gif_info
-        self.stop_animation = False
+        self._view = view
+        self._info = gif_info
+        self._stop_animation = False
 
     def start(self):
         frames_thread = Thread(
             target=self._frame_events,
             args=(
-                self.info.n_frames,
-                lambda: self.stop_animation,
+                self._info.n_frames,
+                lambda: self._stop_animation,
             ),
             daemon=True
         )
@@ -32,13 +32,13 @@ class Animation:
                 break
             sleep(0.01)
             frame = (frame + 1) % n_frames
-            self.view.write_event_value('NextFrame', frame)
+            self._view.write_event_value('NextFrame', frame)
 
     def hide_and_pause(self):
-        self.view.hide()
-        self.stop_animation = True
+        self._view.hide()
+        self._stop_animation = True
 
     def unhide_and_resume(self):
-        self.view.un_hide()
-        self.stop_animation = False
+        self._view.un_hide()
+        self._stop_animation = False
         self.start()

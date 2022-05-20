@@ -1,10 +1,10 @@
 import platform
-from os.path import isfile
+from os import path
 from ctypes import windll
 
 import model
+import views
 from controller import Controller
-from views import GET_FILE_VIEW
 
 
 def set_windows_dpi():
@@ -25,10 +25,9 @@ def main(application: Controller):
 
 if __name__ == "__main__":
     set_windows_dpi()
-    file = GET_FILE_VIEW()
-    if not file or not isfile(file):
+    file = views.GET_FILE()
+    if not file or not path.isfile(file):
         raise SystemExit('No file selected')
-    info = model.GifInfo(file)
-    frames = model.GifFrames(info)
-    controller = Controller(info, frames)
+    gif_info = model.GifInfo(file)
+    controller = Controller(gif_info)
     main(controller)

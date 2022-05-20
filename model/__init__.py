@@ -1,3 +1,3 @@
-from .gif_frames import GifFrames
 from .gif_info import GifInfo
-from . import units
+from .units import Pixels, CropBox
+from .selection import Selection
