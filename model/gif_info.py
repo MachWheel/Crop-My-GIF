@@ -33,8 +33,8 @@ def _usable_area(default=0.7):
     w = h = 10 ** 10
     for monitor in screeninfo.get_monitors():
         mw, mh = monitor.width, monitor.height
-        if mh < w and mw < h:
-            w, h = mh, mw
+        if mw < w and mh < h:
+            w, h = mw, mh
     return Pixels(
         x=int(w * default),
         y=int(h * default)

@@ -1,4 +1,4 @@
-from concurrent.futures import ThreadPoolExecutor, Future
+from concurrent.futures import ThreadPoolExecutor
 from io import BytesIO
 
 from PIL import Image
@@ -10,22 +10,21 @@ import views
 
 class Frames:
     def __init__(self, gif_info: model.GifInfo):
-        loaded = _load_all(gif_info)
-        self.loaded = [frame.result() for frame in loaded]
+        self.loaded = _load_all(gif_info)
 
 
-def _load_all(info: model.GifInfo) -> list[Future[bytes]]:
+def _load_all(info: model.GifInfo) -> list[bytes]:
     frames = iio.imiter(info.gif_file)
+    i, results = 0, []
+    progress = views.PROGRESS(bar_end=info.n_frames)
     with ThreadPoolExecutor() as e:
-        i, results = 0, []
-        progress = views.PROGRESS(bar_end=info.n_frames)
         for frame in frames:
             progress.read(timeout=10)
             progress['-PROG-'].update(i + 1)
             results.append(e.submit(_load, frame, info))
             i += 1
         progress.close()
-    return results
+    return [frame.result() for frame in results]
 
 def _load(frame: iio, info: model.GifInfo) -> bytes:
     if info.resize_factor == 1.0:
