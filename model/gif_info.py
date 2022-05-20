@@ -1,5 +1,5 @@
-from PIL import Image
 import screeninfo
+from PIL import Image
 
 from .units import Pixels
 

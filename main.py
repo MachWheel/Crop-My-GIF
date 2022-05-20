@@ -1,6 +1,6 @@
 import platform
-from os import path
 from ctypes import windll
+from os import path
 
 import model
 import views

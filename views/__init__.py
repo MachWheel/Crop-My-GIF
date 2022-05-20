@@ -6,6 +6,7 @@ import PySimpleGUI as sg
 from model import Pixels
 from . import _gui
 
+
 def GET_FILE():
     return sg.popup_get_file(
         message=_gui.txt.SELECT_FILE,

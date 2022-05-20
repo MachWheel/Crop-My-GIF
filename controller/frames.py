@@ -4,8 +4,9 @@ from io import BytesIO
 from PIL import Image
 from imageio import v3 as iio
 
-import views
 import model
+import views
+
 
 class Frames:
     def __init__(self, gif_info: model.GifInfo):
