@@ -13,7 +13,7 @@ ECHO The generated app will be in the ./dist folder
 ECHO:
 PAUSE
 MKDIR dist
-pyinstaller -w --onefile ..\main.py --icon app.ico --name Crop-My-GIF
+pyinstaller -w --onefile ..\main.py --icon app.ico --name Crop-My-GIF --splash splashfile.jpg
 ECHO:
 ECHO DONE! PRESS ANY KEY TO OPEN THE OUTPUT FOLDER.
 ECHO:

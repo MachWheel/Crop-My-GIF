@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 
 import model
 import views
+from . import _msgs
 from .animation import Animation
 from .crop_gui import CropGUI
 from .cropper import Cropper
@@ -70,4 +71,4 @@ class Controller:
         if output:
             views.OUTPUT_READY(output)
             return
-        views.ERROR()
+        views.ERROR(_msgs.ERROR_MSG)

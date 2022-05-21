@@ -15,13 +15,17 @@ def NEW_SIZE_TXT(box: units.CropBox):
     size = units.Pixels(new_w, new_h)
     return f"New size:\n{size.x}x{size.y} px"
 
-
 def SLOW_EXPORTING() -> str:
     return choice([
         "This might take some time...",
         "Sorry to keep you waiting...",
-        "Holy ****! That'px a huge file...",
-        "That'px a large GIF you have huh...",
+        "Holy ****! That's a huge file...",
+        "That's a pretty big file you have huh...",
         "Still going...",
         "Almost there...",
     ])
+
+ERROR_MSG = (f"Sorry.\n"
+             f"Your GIF file couldn't be cropped.\n"
+             f"The reason, unfortuanetely, is unknown.\n"
+             f"You could try again or try another file.\n")

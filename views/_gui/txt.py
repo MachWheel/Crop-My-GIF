@@ -22,7 +22,3 @@ def PROGRESS_MSG(n_frames=0):
     return 'Exporting cropped GIF file...'
 EXPORTED_MSG = (f'Cropped GIF exported!\n'
                 f'Would you like to open it?')
-ERROR_MSG = (f"Sorry.\n"
-             f"Your GIF file couldn't be cropped.\n"
-             f"The reason, unfortuanetely, is unknown.\n"
-             f"You could try again or try another file.\n")

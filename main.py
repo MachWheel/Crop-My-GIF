@@ -1,19 +1,6 @@
-import platform
-from ctypes import windll
-from os import path
-
 import model
-import views
+import startup
 from controller import Controller
-
-
-def set_windows_dpi():
-    if platform.system() == "Windows":
-        ver = platform.release()
-        if ver == "7":
-            windll.user32.SetProcessDPIAware()
-        elif ver == ("8" or "10"):
-            windll.shcore.SetProcessDpiAwareness(1)
 
 
 def main(application: Controller):
@@ -24,10 +11,12 @@ def main(application: Controller):
 
 
 if __name__ == "__main__":
-    set_windows_dpi()
-    file = views.GET_FILE()
-    if not file or not path.isfile(file):
-        raise SystemExit('No file selected')
+    startup.close_splash()
+    startup.set_windows_dpi()
+    file = None
+    while not file:
+        file = startup.get_file()
     gif_info = model.GifInfo(file)
     controller = Controller(gif_info)
     main(controller)
+    

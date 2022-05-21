@@ -43,9 +43,9 @@ def OUTPUT_READY(output):
         startfile(realpath(output))
 
 
-def ERROR():
+def ERROR(msg):
     return sg.popup_error(
-        f"\n{_gui.txt.ERROR_MSG}\n",
+        f"\n{msg}\n",
         font=_gui.style.F_14,
         no_titlebar=True
     )
