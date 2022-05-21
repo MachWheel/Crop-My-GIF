@@ -15,26 +15,29 @@ class Frames:
 
 def _load_all(info: model.GifInfo) -> list[bytes]:
     frames = iio.imiter(info.gif_file)
-    i, results = 0, []
-    progress = views.PROGRESS(bar_end=info.n_frames)
+    prog = views.PROGRESS(bar_end=info.n_frames)
+    i, results, key = 0, [], '-PROG-'
     with ThreadPoolExecutor() as e:
         for frame in frames:
-            progress.read(timeout=10)
-            progress['-PROG-'].update(i + 1)
+            prog.read(timeout=10)
+            prog[key].update(i + 1)
             results.append(e.submit(_load, frame, info))
             i += 1
-        progress.close()
+        prog.close()
     return [frame.result() for frame in results]
+
 
 def _load(frame: iio, info: model.GifInfo) -> bytes:
     if info.resize_factor == 1.0:
         return _png_load(frame)
     return _png_resize_load(frame, info)
 
+
 def _png_load(frame) -> bytes:
     with BytesIO() as output:
         iio.imwrite(output, frame, format_hint='.png')
         return output.getvalue()
+
 
 def _png_resize_load(frame, info: model.GifInfo) -> bytes:
     frame = Image.fromarray(frame).resize(
