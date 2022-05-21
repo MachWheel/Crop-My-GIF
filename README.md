@@ -35,7 +35,7 @@ Now, install virtualenv if you don't have it:
 
 Clone the repository and change the directory to it:
     
-    git clone https://github.com/WyllerMachado/Crop-My-GIF.git
+    git clone https://github.com/MachWheel/Crop-My-GIF.git
     cd Crop-My-GIF
 
 
@@ -57,7 +57,7 @@ Done. Now you can run the app typing:
 
 # How to compile it:
 
-### First: [clone the repository and properly configure its virtualenv (see above)](https://github.com/WyllerMachado/Crop-My-GIF#cloning-the-repository)
+### First: [clone the repository and properly configure its virtualenv (see above)](#cloning-the-repository)
 ### Second: change to the directory and activate virtualenv if it is not already activated.
 
     cd Crop-My-GIF
