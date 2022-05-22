@@ -3,7 +3,7 @@ import platform
 from ctypes import windll
 import os
 
-from controllers import Browser
+from controllers import GifBrowser
 
 def close_splash():
     """
@@ -26,7 +26,7 @@ def set_windows_dpi():
         elif ver == ("8" or "10"):
             windll.shcore.SetProcessDpiAwareness(1)
 
-def gif_browser() -> str:
+def browse_gif() -> str:
     """
     Displays a popup window asking for user to browse
     and input a GIF file.
@@ -35,7 +35,7 @@ def gif_browser() -> str:
     :return: The user selected GIF file path
     :rtype: str
     """
-    browser, file = Browser(), None
+    browser, file = GifBrowser(), None
     while not file:
         file = browser.get_file()
     if file == 'close':

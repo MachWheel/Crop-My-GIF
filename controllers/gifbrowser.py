@@ -6,7 +6,7 @@ import views
 from . import _icons
 
 
-class Browser:
+class GifBrowser:
     def __init__(self):
         self.view = views.GET_FILE()
         self.browse = self.view['-BROWSE_BTN-']

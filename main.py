@@ -13,7 +13,7 @@ def main(app: Application):
 if __name__ == "__main__":
     startup.close_splash()
     startup.set_windows_dpi()
-    file = startup.gif_browser()
+    file = startup.browse_gif()
     gif_info = model.GifInfo(file)
     application = Application(gif_info)
     main(application)
