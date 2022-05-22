@@ -13,9 +13,7 @@ def main(application: Controller):
 if __name__ == "__main__":
     startup.close_splash()
     startup.set_windows_dpi()
-    file = None
-    while not file:
-        file = startup.get_file()
+    file = startup.get_file()
     gif_info = model.GifInfo(file)
     controller = Controller(gif_info)
     main(controller)

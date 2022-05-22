@@ -3,7 +3,7 @@ import platform
 from ctypes import windll
 import os
 
-import views
+from controller.browser import Browser
 
 def close_splash():
     if '_PYIBoot_SPLASH' in os.environ:
@@ -21,10 +21,9 @@ def set_windows_dpi():
             windll.shcore.SetProcessDpiAwareness(1)
 
 def get_file() -> str | None:
-    file = views.GET_FILE()
-    if not file:
+    browser, file = Browser(), None
+    while not file:
+        file = browser.get_file()
+    if file == 'close':
         raise SystemExit()
-    if not os.path.isfile(file):
-        views.ERROR('Please select a valid GIF file.')
-        return None
     return file

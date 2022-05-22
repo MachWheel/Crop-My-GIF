@@ -1,6 +1,9 @@
-SELECT_FILE = 'Select a GIF to crop'
-GIF_EXTENSION = ('GIF', '*.gif')
 APP_TITLE = "Crop My GIF v1.2"
+FILE_INPUT = 'Select a GIF to crop'
+START_TOOLTIP = "Load GIF file animation"
+BROWSE_TOOLTIP = "Select a GIF file"
+GIF_TYPE = (('GIF file', '*.gif *.GIF'),)
+APP_VERSION = "v1.2"
 DEFAULT_INFO = 'Click GIF'
 SELECT_FRAME = "SELECTED GIF AREA"
 CROP_FRAME = "CROP MY GIF"

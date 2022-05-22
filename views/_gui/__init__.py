@@ -1,7 +1,53 @@
 import PySimpleGUI as sg
 
 from model import Pixels
-from . import txt, style
+from . import icons, txt, style
+
+
+def TITLE_HEADING():
+    img = sg.Image(icons.CROP(), p=((0, 6), (20, 6)))
+    heading = sg.Text(
+        txt.APP_TITLE,
+        font=style.F_BOLD_14,
+        p=((0, 10), (20, 3)),
+    )
+    return img, heading
+
+
+def FILE_FRAME() -> sg.Frame:
+    BROWSE_BTN = sg.Button(
+        button_type=sg.BUTTON_TYPE_BROWSE_FILE,
+        file_types=txt.GIF_TYPE,
+        image_data=icons.FOLDER(),
+        key='-BROWSE_BTN-',
+        target='-FILE_IN-',
+        tooltip=txt.BROWSE_TOOLTIP,
+        **style.PNG_BTN_STYLE()
+    )
+    FILE_INPUT = sg.Input(
+        default_text=txt.FILE_INPUT,
+        k='-FILE_IN-',
+        size=(30, 4),
+        expand_x=True,
+        disabled=True,
+        font=style.F_ITALIC_12,
+        border_width=0,
+        disabled_readonly_background_color=style.BG_COLOR,
+    )
+    START_BTN = sg.Button(
+        button_type=sg.BUTTON_TYPE_READ_FORM,
+        image_data=icons.PLAY(),
+        tooltip=txt.START_TOOLTIP,
+        key="-START_BTN-",
+        enable_events=True,
+        **style.PNG_BTN_STYLE()
+    )
+    layout = [
+        [sg.VPush()],
+        [BROWSE_BTN, sg.Push(), FILE_INPUT, sg.Push(),  START_BTN],
+        [sg.VPush()]
+    ]
+    return sg.Frame('', layout, relief=sg.RELIEF_RAISED, p=(5, 10))
 
 
 def SELECTION_FRAME():
@@ -50,21 +96,23 @@ def CROP_FRAME():
         element_justification='center'
     )
 
+
 def GIF_GRAPH(img_size: Pixels):
     return sg.Graph(
-            canvas_size=(img_size.x, img_size.y),
-            graph_bottom_left=(0, img_size.y),
-            graph_top_right=(img_size.x, 0),
-            key='-GRAPH-',
-            enable_events=True,
-            background_color='green'
-        )
+        canvas_size=(img_size.x, img_size.y),
+        graph_bottom_left=(0, img_size.y),
+        graph_top_right=(img_size.x, 0),
+        key='-GRAPH-',
+        enable_events=True,
+        background_color='green'
+    )
+
 
 def PROGRESS_BAR(bar_end):
     return sg.ProgressBar(
-            bar_end,
-            orientation='h',
-            size=(50, 20),
-            key='-PROG-',
-            bar_color=style.BAR_COLOR
-        )
+        bar_end,
+        orientation='h',
+        size=(50, 20),
+        key='-PROG-',
+        bar_color=style.BAR_COLOR
+    )

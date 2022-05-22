@@ -6,12 +6,16 @@ import PySimpleGUI as sg
 from model import Pixels
 from . import _gui
 
-
 def GET_FILE():
-    return sg.popup_get_file(
-        message=_gui.txt.SELECT_FILE,
+    layout = [
+        [_gui.TITLE_HEADING()],
+        [_gui.FILE_FRAME()]
+    ]
+    return sg.Window(
         title=_gui.txt.APP_TITLE,
-        file_types=(_gui.txt.GIF_EXTENSION,)
+        layout=layout,
+        finalize=True,
+        element_justification='center'
     )
 
 def CROP_GIF(img_size: Pixels):
