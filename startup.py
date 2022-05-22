@@ -3,7 +3,7 @@ import platform
 from ctypes import windll
 import os
 
-from controller.browser import Browser
+from controllers import Browser
 
 def close_splash():
     if '_PYIBoot_SPLASH' in os.environ:

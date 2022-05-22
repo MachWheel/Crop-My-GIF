@@ -2,25 +2,20 @@ import PySimpleGUI as sg
 
 import model
 import views
-from . import _msgs
-from .animation import Animation
-from .crop_gui import CropGUI
-from .cropper import Cropper
-from .display import Display
-from .frames import Frames
+from . import _ui, _msgs
 
 
-class Controller:
+class Application:
     def __init__(self, gif_info: model.GifInfo):
         """
-        Initializes a Controller instance
+        Initializes a Application instance
         """
-        gif_frames = Frames(gif_info)
+        gif_frames = _ui.Frames(gif_info)
         self.gif_info = gif_info
         self.view = views.CROP_GIF(gif_info.display_size)
-        self.gui = CropGUI(self.view, gif_info)
-        self.display = Display(self.view, gif_frames)
-        self.animation = Animation(self.view, gif_info)
+        self.gui = _ui.CropGUI(self.view, gif_info)
+        self.display = _ui.Display(self.view, gif_frames)
+        self.animation = _ui.Animation(self.view, gif_info)
         self.selection = model.Selection(gif_info.resize_factor)
         self.animation.start()
 
@@ -64,7 +59,7 @@ class Controller:
         info = self.gif_info
         box = self.selection.real_box
         preserve_fps = self.gui.preserve_fps
-        return Cropper(info, box, preserve_fps)
+        return _ui.Cropper(info, box, preserve_fps)
 
     @staticmethod
     def _show_output(output):

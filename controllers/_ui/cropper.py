@@ -7,7 +7,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 
 import model
 import views
-from . import _msgs
+from controllers import _msgs
 
 
 class Cropper:

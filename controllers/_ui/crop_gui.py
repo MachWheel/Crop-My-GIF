@@ -1,6 +1,6 @@
 from model.gif_info import GifInfo
 from model.units import CropBox
-from . import _msgs
+from controllers import _msgs
 
 
 class CropGUI:

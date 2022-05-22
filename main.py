@@ -1,12 +1,12 @@
 import model
 import startup
-from controller import Controller
+from controllers import Application
 
 
-def main(application: Controller):
+def main(app: Application):
     state = ''
     while state != 'done':
-        state = application.read_events()
+        state = app.read_events()
     return
 
 
@@ -15,6 +15,6 @@ if __name__ == "__main__":
     startup.set_windows_dpi()
     file = startup.get_file()
     gif_info = model.GifInfo(file)
-    controller = Controller(gif_info)
-    main(controller)
+    application = Application(gif_info)
+    main(application)
     
