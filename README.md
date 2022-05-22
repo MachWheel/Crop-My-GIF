@@ -79,7 +79,7 @@ Done. Now you can run the app typing:
 Inside Easy-Gifer virtualenv, change the directory to compile folder and run pyinstaller:
 
     cd compile
-    pyinstaller -w --onefile ..\main.py --icon app.ico --name Crop-My-GIF
+    pyinstaller -w --onefile ..\main.py --icon app.ico --name Crop-My-GIF --splash splashfile.jpg
     
   - **The generated .exe file will be in .\compile\dist folder.**
 
