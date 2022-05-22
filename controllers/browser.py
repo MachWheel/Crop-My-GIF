@@ -28,11 +28,11 @@ class Browser:
         if self.input.get() != self.file:
             self.file = self.input.get()
             self.input.set_tooltip(self.input.get())
-            valid = self.validate_input()
+            valid = self.valid_gif()
             self.change_state(valid)
 
 
-    def validate_input(self) -> bool:
+    def valid_gif(self) -> bool:
         file = self.file
         is_file = (file and os.path.isfile(file))
         is_gif = '.gif' in str(file).lower()
