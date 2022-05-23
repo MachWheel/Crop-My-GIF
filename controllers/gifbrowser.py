@@ -7,7 +7,14 @@ from . import _icons
 
 
 class GifBrowser:
+    """
+    Controller responsible for the GIF file
+    browser popup.
+    """
     def __init__(self):
+        """
+        Initializes a new GifBrowser object.
+        """
         self.view = views.GET_FILE()
         self.browse = self.view['-BROWSE_BTN-']
         self.start = self.view['-START_BTN-']
@@ -15,6 +22,15 @@ class GifBrowser:
         self.file = None
 
     def get_file(self) -> str | None:
+        """
+        Reads the file browser window events and returns:
+
+        * GIF file path if selected
+        * "close" if user closes window
+        * None if the browser is still open
+
+        :rtype: str | None
+        """
         event, values = self.view.read(timeout=10)
 
         if event == '-START_BTN-':
@@ -28,17 +44,26 @@ class GifBrowser:
         if self.input.get() != self.file:
             self.file = self.input.get()
             self.input.set_tooltip(self.input.get())
-            valid = self.valid_gif()
-            self.change_state(valid)
+            self.change_state(self.valid)
 
-
-    def valid_gif(self) -> bool:
+    @property
+    def valid(self) -> bool:
+        """
+        Returns True if user selected a valid GIF file.
+        """
         file = self.file
         is_file = (file and os.path.isfile(file))
         is_gif = '.gif' in str(file).lower()
         return is_file and is_gif
 
     def change_state(self, valid: bool) -> None:
+        """
+        Enables and disables FileBrowser controls
+        according to validation state.
+
+        :param valid: State of file validation
+        :type valid: bool
+        """
         disabled = False if valid else 'ignore'
         self.start.update(visible=valid)
         self.browse.update(image_data=_icons.FOLDER(disabled))
