@@ -8,7 +8,10 @@ from . import _ui, _msgs
 class Application:
     def __init__(self, gif_info: model.GifInfo):
         """
-        Initializes a Application instance
+        Initializes a new Application object.
+
+        :param gif_info: Object containing the GIF file information
+        :type gif_info: model.GifInfo
         """
         gif_frames = _ui.Frames(gif_info)
         self.gif_info = gif_info
@@ -21,8 +24,10 @@ class Application:
 
     def read_events(self) -> str | None:
         """
-        Reads window events and returns 'done'
-        if the execution finishes.
+        Reads the application window events.
+
+        :returns: 'done' if user closes the window, else None
+        :rtype: str | None
         """
         event, values = self.view.read(timeout=50)
 
@@ -55,14 +60,25 @@ class Application:
             self.gui.clear()
 
     @property
-    def _cropper(self):
+    def _cropper(self) -> _ui.Cropper:
+        """
+        :return: A new Cropper object set with current selected values.
+        :rtype: _ui.Cropper
+        """
         info = self.gif_info
         box = self.selection.real_box
         preserve_fps = self.gui.preserve_fps
         return _ui.Cropper(info, box, preserve_fps)
 
     @staticmethod
-    def _show_output(output):
+    def _show_output(output: str) -> None:
+        """
+        Displays a popup window showing the result of
+        the export.
+
+        :param output: Output GIF file path
+        :type output: str
+        """
         if output:
             views.OUTPUT_READY(output)
             return
