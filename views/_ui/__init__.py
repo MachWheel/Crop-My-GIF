@@ -4,7 +4,9 @@ from model import Pixels
 from . import icons, txt, style
 
 
-def TITLE_HEADING():
+def TITLE_HEADING() -> tuple[sg.Image, sg.Text]:
+    """Returns 'Crop My GIF' heading UI elements as
+    a tuple of PySimpleGUI objects [sg.Image, sg.Text]"""
     img = sg.Image(icons.CROP(), p=((0, 6), (20, 6)))
     heading = sg.Text(
         txt.APP_TITLE,
@@ -15,6 +17,7 @@ def TITLE_HEADING():
 
 
 def FILE_FRAME() -> sg.Frame:
+    """Returns GIF browser UI elements as a PySimpleGUI Frame object"""
     BROWSE_BTN = sg.Button(
         button_type=sg.BUTTON_TYPE_BROWSE_FILE,
         file_types=txt.GIF_TYPE,
@@ -50,7 +53,8 @@ def FILE_FRAME() -> sg.Frame:
     return sg.Frame('', layout, relief=sg.RELIEF_RAISED, p=(5, 10))
 
 
-def SELECTION_FRAME():
+def CROP_SELECTION_FRAME() -> sg.Frame:
+    """Returns crop selection UI elements as a PySimpleGUI Frame object"""
     layout = [[
         sg.T(txt.DEFAULT_INFO, key="-START-", font=style.F_BOLD_10),
         sg.T('to'),
@@ -71,7 +75,8 @@ def SELECTION_FRAME():
     )
 
 
-def CROP_FRAME():
+def CROP_CONTROLS_FRAME() -> sg.Frame:
+    """Returns crop controls UI elements as a PySimpleGUI Frame object"""
     layout = [[
         sg.Text(txt.DEFAULT_INFO, key="-BOX-", font=style.F_BOLD_10),
         sg.Button(
@@ -97,7 +102,8 @@ def CROP_FRAME():
     )
 
 
-def GIF_GRAPH(img_size: Pixels):
+def GIF_GRAPH(img_size: Pixels) -> sg.Graph:
+    """Returns gif display UI element as a PySimpleGUI Graph object"""
     return sg.Graph(
         canvas_size=(img_size.x, img_size.y),
         graph_bottom_left=(0, img_size.y),
@@ -108,7 +114,8 @@ def GIF_GRAPH(img_size: Pixels):
     )
 
 
-def PROGRESS_BAR(bar_end):
+def PROGRESS_BAR(bar_end) -> sg.ProgressBar:
+    """Returns progress bar UI element as a PySimpleGUI ProgressBar object"""
     return sg.ProgressBar(
         bar_end,
         orientation='h',
