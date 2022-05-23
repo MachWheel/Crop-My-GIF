@@ -48,7 +48,7 @@ class Application:
         if (('-GRAPH-' in event) and
                 (None not in values['-GRAPH-'])):
             self.selection.update(values['-GRAPH-'])
-            self.gui.update_info(self.selection.real_box)
+            self.gui.update_info(self.selection.box)
             self.display.draw_selection(self.selection)
 
         if event == '-CROP_BTN-':
@@ -70,7 +70,7 @@ class Application:
         :rtype: _ui.Cropper
         """
         info = self.gif_info
-        box = self.selection.real_box
+        box = self.selection.box
         preserve_fps = self.gui.preserve_fps
         return _ui.Cropper(info, box, preserve_fps)
 

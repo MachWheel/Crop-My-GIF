@@ -43,7 +43,7 @@ def _get_resize_factor(gif_size: Pixels) -> float:
         named tuple of Pixels(x, y)
     :type gif_size: model.units.Pixels
 
-    :return: View resize factor as a float value
+    :return: GIF display resize factor as a float value
     :rtype: float
     """
     usable: Pixels = _usable_area()
