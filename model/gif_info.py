@@ -5,6 +5,10 @@ from .units import Pixels
 
 
 class GifInfo:
+    """
+    Holds GIF file information related to its
+    directory, graphical size and number of frames.
+    """
     def __init__(self, file):
         """
         Initializes a new GifInfo object.

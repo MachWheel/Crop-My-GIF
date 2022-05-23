@@ -1,9 +1,18 @@
+"""
+This module holds functions related to
+the application startup proccess.
+
+    * close_splash - Closes the application loading splash screen.
+    * set_windows_dpi - Sets the application DPI for Windows systems
+    * browse_gif - Displays a popup window asking for user to browse a GIF file.
+"""
 import importlib.util
 import platform
 from ctypes import windll
 import os
 
 from controllers import GifBrowser
+
 
 def close_splash():
     """
@@ -28,8 +37,7 @@ def set_windows_dpi():
 
 def browse_gif() -> str:
     """
-    Displays a popup window asking for user to browse
-    and input a GIF file.
+    Displays a popup window asking for user to browse a GIF file.
 
     :raise SystemExit: if user closes the window
     :return: The user selected GIF file path

@@ -6,6 +6,10 @@ from . import _ui, _msgs
 
 
 class Application:
+    """
+    Controller responsible for displaying the loaded GIF
+    file animation and allowing the user to crop it.
+    """
     def __init__(self, gif_info: model.GifInfo):
         """
         Initializes a new Application object.
