@@ -1,3 +1,13 @@
+"""
+This module holds functions that generates
+PySimpleGUI view objects as sg.Window and sg.popup:
+
+    * GET_FILE - File browser Window
+    * CROP_GIF - GIF cropping Window
+    * PROGRESS - Progress bar Window
+    * OUTPUT_READY - Output view popup
+    * ERROR - Error view popup
+"""
 from os import startfile
 from os.path import realpath
 
@@ -34,7 +44,15 @@ def CROP_GIF(img_size: Pixels) -> sg.Window:
 
 
 def PROGRESS(importing=True, bar_end=200) -> sg.Window:
-    """Returns progress bar view as a PySimpleGUI Window object"""
+    """
+    Returns progress bar view as a PySimpleGUI Window object
+
+    :param importing: Optional: (default=True) set False to exporting
+    :type importing: bool
+
+    :param bar_end: Optional: Progress bar end limit value (default=200)
+    :type bar_end: int
+    """
     title = _ui.txt.PROGRESS_TITLE[importing]
     msg = _ui.txt.PROGRESS_MSG(bar_end if importing else 0)
     layout = [
@@ -44,15 +62,25 @@ def PROGRESS(importing=True, bar_end=200) -> sg.Window:
     return sg.Window(title, layout)
 
 
-def OUTPUT_READY(output) -> None:
-    """Displays output view as a PySimpleGUI popup"""
+def OUTPUT_READY(output: str) -> None:
+    """
+    Displays output view as a PySimpleGUI popup
+
+    :param output: Output GIF file path
+    :type output: str
+    """
     open_file = sg.popup_yes_no(_ui.txt.EXPORTED_MSG)
     if open_file == 'Yes':
         startfile(realpath(output))
 
 
-def ERROR(msg):
-    """Displays error view as a PySimpleGUI popup"""
+def ERROR(msg: str) -> None:
+    """
+    Displays error view as a PySimpleGUI popup
+
+    :param msg: Error message string
+    :type msg: str
+    """
     return sg.popup_error(
         f"\n{msg}\n",
         font=_ui.style.F_14,

@@ -1,3 +1,14 @@
+"""
+This module holds functions that generates UI
+elements as PySimpleGUI objects:
+
+    * TITLE_HEADING - 'Crop My GIF' heading [sg.Image, sg.Text]
+    * FILE_FRAME - GIF browser sg.Frame
+    * CROP_SELECTION_FRAME - Crop selection sg.Frame
+    * CROP_CONTROLS_FRAME - Crop controls sg.Frame
+    * GIF_GRAPH - GIF display sg.Graph
+    * PROGRESS_BAR - Progress bar sg.ProgressBar
+"""
 import PySimpleGUI as sg
 
 from model import Pixels
@@ -102,20 +113,33 @@ def CROP_CONTROLS_FRAME() -> sg.Frame:
     )
 
 
-def GIF_GRAPH(img_size: Pixels) -> sg.Graph:
-    """Returns gif display UI element as a PySimpleGUI Graph object"""
+def GIF_GRAPH(gif_size: Pixels) -> sg.Graph:
+    """
+    Returns gif display UI element as a PySimpleGUI
+    Graph object
+
+    :param gif_size: GIF file width and height
+        as a named tuple of Pixels(x, y)
+    :type gif_size: model.units.Pixels
+    """
     return sg.Graph(
-        canvas_size=(img_size.x, img_size.y),
-        graph_bottom_left=(0, img_size.y),
-        graph_top_right=(img_size.x, 0),
+        canvas_size=(gif_size.x, gif_size.y),
+        graph_bottom_left=(0, gif_size.y),
+        graph_top_right=(gif_size.x, 0),
         key='-GRAPH-',
         enable_events=True,
         background_color='green'
     )
 
 
-def PROGRESS_BAR(bar_end) -> sg.ProgressBar:
-    """Returns progress bar UI element as a PySimpleGUI ProgressBar object"""
+def PROGRESS_BAR(bar_end: int) -> sg.ProgressBar:
+    """
+        Returns progress bar UI element as a PySimpleGUI
+        ProgressBar object
+
+        :param bar_end: Progress bar end limit value
+        :type bar_end: int
+        """
     return sg.ProgressBar(
         bar_end,
         orientation='h',
