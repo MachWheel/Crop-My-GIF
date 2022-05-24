@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 
 import model
 import views
-from . import Cropper, Frames, _ui, _msgs
+from . import _ui, _msgs
 
 
 class Application:
@@ -17,7 +17,7 @@ class Application:
         :param gif_info: Object containing the GIF file information
         :type gif_info: model.GifInfo
         """
-        gif_frames = Frames(gif_info)
+        gif_frames = _ui.Frames(gif_info)
         self.gif_info = gif_info
         self.view = views.CROP_GIF(gif_info.display_size)
         self.gui = _ui.CropGUI(self.view, gif_info)
@@ -64,15 +64,15 @@ class Application:
             self.gui.clear()
 
     @property
-    def _cropper(self) -> Cropper:
+    def _cropper(self) -> _ui.Cropper:
         """
         :return: A new Cropper object set with current selected values.
-        :rtype: controllers.Cropper
+        :rtype: _ui.Cropper
         """
         info = self.gif_info
         box = self.selection.box
         preserve_fps = self.gui.preserve_fps
-        return Cropper(info, box, preserve_fps)
+        return _ui.Cropper(info, box, preserve_fps)
 
     @staticmethod
     def _show_output(output: str) -> None:

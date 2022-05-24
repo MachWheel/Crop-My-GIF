@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 
 import model
-from controllers import Frames
+from .frames import Frames
 
 class Display:
     """
