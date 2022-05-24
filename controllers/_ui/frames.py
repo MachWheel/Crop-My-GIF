@@ -9,6 +9,9 @@ import views
 
 
 class Frames:
+    """
+    Loads and holds GIF file frames into RAM
+    """
     def __init__(self, gif_info: model.GifInfo):
         """
         Initializes a new Frames object.
