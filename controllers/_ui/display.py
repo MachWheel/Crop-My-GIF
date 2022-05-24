@@ -6,7 +6,7 @@ from .frames import Frames
 class Display:
     """
     Controller responsible for drawing GIF frames
-    and user selections.
+    and user selections into a given PySimpleGUI Window.
     """
     def __init__(self, view: sg.Window, gif_frames: Frames):
         """
