@@ -44,10 +44,10 @@ class GifBrowser:
         if self.input.get() != self.file:
             self.file = self.input.get()
             self.input.set_tooltip(self.input.get())
-            self.change_state(self.valid)
+            self._change_state(self._valid)
 
     @property
-    def valid(self) -> bool:
+    def _valid(self) -> bool:
         """
         Returns True if user selected a valid GIF file.
         """
@@ -56,7 +56,7 @@ class GifBrowser:
         is_gif = '.gif' in str(file).lower()
         return is_file and is_gif
 
-    def change_state(self, valid: bool) -> None:
+    def _change_state(self, valid: bool) -> None:
         """
         Enables and disables FileBrowser controls
         according to validation state.
@@ -67,4 +67,5 @@ class GifBrowser:
         disabled = False if valid else 'ignore'
         self.start.update(visible=valid)
         self.browse.update(image_data=_icons.FOLDER(disabled))
+        # noinspection PyTypeChecker
         self.input.set_size(size=(20 if disabled else 28, None))

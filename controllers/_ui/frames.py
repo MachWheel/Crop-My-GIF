@@ -2,7 +2,8 @@ from concurrent.futures import ThreadPoolExecutor
 from io import BytesIO
 
 from PIL import Image
-from imageio import v3 as iio
+from imageio.v3 import imiter, imwrite
+from numpy import ndarray
 
 import model
 import views
@@ -10,11 +11,11 @@ import views
 
 class Frames:
     """
-    Loads and holds GIF file frames individually into RAM
+    Holds individual GIF file frames as a list of bytes
     """
     def __init__(self, gif_info: model.GifInfo):
         """
-        Initializes a new Frames object.
+        Initializes a new Frames object, which loads the GIF file frames
 
         :param gif_info: Object containing the GIF file information
         :type gif_info: model.GifInfo
@@ -29,7 +30,7 @@ def _load_all(info: model.GifInfo) -> list[bytes]:
     :param info: Object containing the GIF file information
     :type info: model.GifInfo
     """
-    frames = iio.imiter(info.gif_file)
+    frames = imiter(info.gif_file)
     prog = views.PROGRESS(bar_end=info.n_frames)
     i, results, key = 0, [], '-PROG-'
     with ThreadPoolExecutor() as e:
@@ -42,12 +43,12 @@ def _load_all(info: model.GifInfo) -> list[bytes]:
     return [frame.result() for frame in results]
 
 
-def _load(frame: iio, info: model.GifInfo) -> bytes:
+def _load(frame: ndarray, info: model.GifInfo) -> bytes:
     """
     Returns a GIF file frame as bytes
 
     :param frame: Frame to be loaded
-    :type frame: imageio object
+    :type frame: numpy.ndarray
 
     :param info: Object containing the GIF file information
     :type info: model.GifInfo
@@ -57,27 +58,30 @@ def _load(frame: iio, info: model.GifInfo) -> bytes:
     return _png_resize_load(frame, info)
 
 
-def _png_load(frame) -> bytes:
+def _png_load(frame: ndarray) -> bytes:
     """
-    Loads a GIF frame as a .png an return it as bytes
+    Loads a GIF frame to .png and returns it as bytes
 
     :param frame: Frame to be loaded
-    :type frame: imageio object
+    :type frame: numpy.ndarray
     """
     with BytesIO() as output:
-        iio.imwrite(output, frame, format_hint='.png')
+        imwrite(output, frame, format_hint='.png')
         return output.getvalue()
 
 
-def _png_resize_load(frame: iio, info: model.GifInfo) -> bytes:
+def _png_resize_load(frame: ndarray, info: model.GifInfo) -> bytes:
     """
-    Loads a GIF frame resizing it as a .png an returning it as bytes
+    Loads a GIF frame, while resizing it, to a .png bytes
 
     :param frame: Frame to be loaded
-    :type frame: imageio object
+    :type frame: numpy.ndarray
 
     :param info: Object containing the GIF file information
     :type info: model.GifInfo
+
+    :return: .png contents
+    :rtype: bytes
     """
     frame = Image.fromarray(frame).resize(
         resample=Image.Resampling.LANCZOS,
