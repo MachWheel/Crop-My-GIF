@@ -8,9 +8,9 @@ from controllers import App
 
 def main(app: App):
     """
-    Reads main application events until its state becomes 'done'
+    Reads main app events until it returns 'done'
 
-    :param app: Object containing the Application controller
+    :param app: Object containing the App controller
     :type app: controllers.app.App
     """
     state = ''
