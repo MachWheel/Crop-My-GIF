@@ -1,9 +1,18 @@
+"""
+Contains the application entry point and startup routine.
+"""
 import model
 import startup
 from controllers import Application
 
 
 def main(app: Application):
+    """
+    Reads main application events until its state becomes 'done'
+
+    :param app: Object containing the Application controller
+    :type app: controllers.application.Application
+    """
     state = ''
     while state != 'done':
         state = app.read_events()
