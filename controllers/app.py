@@ -5,14 +5,14 @@ import views
 from . import _ui, _msgs
 
 
-class Application:
+class App:
     """
     Controller responsible for displaying the loaded GIF
     file animation and allowing the user to crop it.
     """
     def __init__(self, gif_info: model.GifInfo):
         """
-        Initializes a new Application object.
+        Initializes a new App object.
 
         :param gif_info: Object containing the GIF file information
         :type gif_info: model.GifInfo

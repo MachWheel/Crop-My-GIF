@@ -1,2 +1,2 @@
-from .application import Application
+from .app import App
 from .gifbrowser import GifBrowser
