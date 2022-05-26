@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 
 import model
-from .frames import Frames
+from .._gif.frames import Frames
 
 class Display:
     """
