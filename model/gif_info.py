@@ -58,7 +58,7 @@ def _usable_area(default: float = 0.7) -> Pixels:
     """
     :param default: Optional: the default display
         usable area as a float value.
-    :type default: flot
+    :type default: float
 
     :return: The usable width and height of the smallest
         monitor as a named tuple of Pixels(x, y)
