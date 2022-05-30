@@ -1,8 +1,8 @@
-<p align="center"><img src="https://i.imgur.com/lmqmHWo.png" alt="Crop My GIF Logo"></p>
+<p align="center"><img src="/docs/source/_static/logo.png?raw=true" alt="Crop My GIF Logo"></p>
 <h1 align="center">Crop My GIF</h1>
 <p align="center"><i>A practical way to crop large GIF animation files.</i></p>
 
-<p align="center"><img src="https://s8.gifyu.com/images/crop-my-gif-v12.gif" alt="Crop My GIF DEMO"></p>
+<p align="center"><img src="/docs/source/_static/demo_v12.gif?raw=true" alt="Crop My GIF DEMO"></p>
 
 # Documentation
 ### [crop-my-gif.readthedocs.io](http://crop-my-gif.readthedocs.io/)
