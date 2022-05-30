@@ -12,7 +12,10 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('../../'))
+sys.path.insert(0, os.path.abspath('../../controllers'))
+sys.path.insert(0, os.path.abspath('../../model'))
+sys.path.insert(0, os.path.abspath('../../views'))
 
 
 # -- Project information -----------------------------------------------------
