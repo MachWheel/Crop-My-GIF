@@ -1,3 +1,12 @@
 sphinx==4.2.0
 myst-parser
 sphinx-rtd-theme
+imageio==2.18.0
+imageio-ffmpeg==0.4.7
+moviepy==1.0.3
+Pillow==9.1.0
+pyinstaller==5.0.1
+pyinstaller-hooks-contrib==2022.4
+PySimpleGUI==4.59.0
+pywin32-ctypes==0.2.0
+screeninfo==0.8
