@@ -1,6 +1,6 @@
 # How to use it
 
-<p align="center"><img src="_static/demo.gif" alt="Crop My GIF DEMO"></p>
+<p align="center"><img src="_static/demo_v12.gif" alt="Crop My GIF DEMO"></p>
 
 ***
 
