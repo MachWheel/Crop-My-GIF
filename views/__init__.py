@@ -8,8 +8,7 @@ PySimpleGUI view objects as sg.Window and sg.popup:
     * OUTPUT_READY - Output view popup
     * ERROR - Error view popup
 """
-from os import startfile
-from os.path import realpath
+import os
 
 import PySimpleGUI as sg
 
@@ -71,7 +70,7 @@ def OUTPUT_READY(output: str) -> None:
     """
     open_file = sg.popup_yes_no(_ui.txt.EXPORTED_MSG)
     if open_file == 'Yes':
-        startfile(realpath(output))
+        os.startfile(os.path.realpath(output))
 
 
 def ERROR(msg: str) -> None:
