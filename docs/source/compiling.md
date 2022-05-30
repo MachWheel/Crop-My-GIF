@@ -17,7 +17,7 @@
     cd compile
     .\compile.bat
     
-![COMPILE](https://s8.gifyu.com/images/compile-crop-my-gif.gif)
+![COMPILE](_static/compiling.gif)
 
 >> _**The folder containing the generated .exe file will be opened automatically**_
 
