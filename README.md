@@ -4,6 +4,10 @@
 
 <p align="center"><img src="https://s8.gifyu.com/images/crop-my-gif-v12.gif" alt="Crop My GIF DEMO"></p>
 
+# Documentation
+You can check Crop My GIF's documentation if you want at:  
+[**crop-my-gif.readthedocs.io**](http://crop-my-gif.readthedocs.io/)
+
 # How to use it
   1. Choose a GIF file 
   2. Click the image to select the crop start/end positions
