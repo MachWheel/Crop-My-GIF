@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.views &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".views._ui" href="views._ui.html" />
+    <link rel="prev" title=".controllers.GifBrowser" href="controllers.Gifbrowser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling the application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.GifInfo.html">.model.GifInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">.views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-file-window">Get File Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crop-my-gif-window">Crop My GIF Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#progress-bar-window">Progress Bar Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-ready-popup">Output Ready Popup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-popup">Error Popup</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Animation.html">.controllers._ui.Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.CropGUI.html">.controllers._ui.CropGUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Cropper.html">.controllers._gif.Cropper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>.views</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/views.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-views">
+<span id="views"></span><h1>.views<a class="headerlink" href="#module-views" title="Permalink to this headline"></a></h1>
+<p>This module holds functions that generates
+PySimpleGUI view objects as sg.Window and sg.popup:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>GET_FILE - File browser Window</p></li>
+<li><p>CROP_GIF - GIF cropping Window</p></li>
+<li><p>PROGRESS - Progress bar Window</p></li>
+<li><p>OUTPUT_READY - Output view popup</p></li>
+<li><p>ERROR - Error view popup</p></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><blockquote>
+<div><p><strong>Location:</strong><br />
+<a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/views/__init__.py"><strong>/views/__init__.py</strong></a></p>
+</div></blockquote>
+</div></blockquote>
+<hr class="docutils" />
+<section id="get-file-window">
+<h2>Get File Window<a class="headerlink" href="#get-file-window" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="views.GET_FILE">
+<span class="sig-prename descclassname"><span class="pre">views.</span></span><span class="sig-name descname"><span class="pre">GET_FILE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PySimpleGUI.PySimpleGUI.Window</span></span></span><a class="headerlink" href="#views.GET_FILE" title="Permalink to this definition"></a></dt>
+<dd><p>Returns file browser view as a PySimpleGUI Window object</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="crop-my-gif-window">
+<h2>Crop My GIF Window<a class="headerlink" href="#crop-my-gif-window" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="views.CROP_GIF">
+<span class="sig-prename descclassname"><span class="pre">views.</span></span><span class="sig-name descname"><span class="pre">CROP_GIF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.Pixels</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PySimpleGUI.PySimpleGUI.Window</span></span></span><a class="headerlink" href="#views.CROP_GIF" title="Permalink to this definition"></a></dt>
+<dd><p>Returns GIF cropping view as a PySimpleGUI Window object</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="progress-bar-window">
+<h2>Progress Bar Window<a class="headerlink" href="#progress-bar-window" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="views.PROGRESS">
+<span class="sig-prename descclassname"><span class="pre">views.</span></span><span class="sig-name descname"><span class="pre">PROGRESS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">importing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PySimpleGUI.PySimpleGUI.Window</span></span></span><a class="headerlink" href="#views.PROGRESS" title="Permalink to this definition"></a></dt>
+<dd><p>Returns progress bar view as a PySimpleGUI Window object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>importing</strong> (<em>bool</em>) – Optional: (default=True) set False to exporting</p></li>
+<li><p><strong>bar_end</strong> (<em>int</em>) – Optional: Progress bar end limit value (default=200)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="output-ready-popup">
+<h2>Output Ready Popup<a class="headerlink" href="#output-ready-popup" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="views.OUTPUT_READY">
+<span class="sig-prename descclassname"><span class="pre">views.</span></span><span class="sig-name descname"><span class="pre">OUTPUT_READY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#views.OUTPUT_READY" title="Permalink to this definition"></a></dt>
+<dd><p>Displays output view as a PySimpleGUI popup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>output</strong> (<em>str</em>) – Output GIF file path</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="error-popup">
+<h2>Error Popup<a class="headerlink" href="#error-popup" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="views.ERROR">
+<span class="sig-prename descclassname"><span class="pre">views.</span></span><span class="sig-name descname"><span class="pre">ERROR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#views.ERROR" title="Permalink to this definition"></a></dt>
+<dd><p>Displays error view as a PySimpleGUI popup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – Error message string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<p><strong><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/views/__init__.py">Source code (on GitHub)</a></strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controllers.Gifbrowser.html" class="btn btn-neutral float-left" title=".controllers.GifBrowser" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="views._ui.html" class="btn btn-neutral float-right" title=".views._ui" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

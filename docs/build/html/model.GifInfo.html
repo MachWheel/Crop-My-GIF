@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.model.GifInfo &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".model.Selection" href="model.Selection.html" />
+    <link rel="prev" title=".main.py" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling the application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">.model.GifInfo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initializer">Initializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instance-property">Instance property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-module-functions">Internal module functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code-on-github">Source code (on GitHub)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views.html">.views</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Animation.html">.controllers._ui.Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.CropGUI.html">.controllers._ui.CropGUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Cropper.html">.controllers._gif.Cropper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>.model.GifInfo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/model.GifInfo.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-gifinfo">
+<h1>.model.GifInfo<a class="headerlink" href="#model-gifinfo" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.gif_info.GifInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.gif_info.</span></span><span class="sig-name descname"><span class="pre">GifInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.gif_info.GifInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Holds GIF file information related to its
+directory, graphical size and number of frames.</p>
+</dd></dl>
+
+<section id="initializer">
+<h2>Initializer<a class="headerlink" href="#initializer" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="model.GifInfo.__init__">
+<span class="sig-prename descclassname"><span class="pre">model.GifInfo.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.GifInfo.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes a new GifInfo object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – GIF file path</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline"></a></h2>
+<p><strong><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/model/gif_info.py">/model/gif_info.py</a></strong></p>
+</section>
+<hr class="docutils" />
+<section id="instance-property">
+<h2>Instance property<a class="headerlink" href="#instance-property" title="Permalink to this headline"></a></h2>
+<dl class="py property">
+<dt class="sig sig-object py" id="model.GifInfo.display_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GifInfo.</span></span><span class="sig-name descname"><span class="pre">display_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">model.units.Pixels</span></em><a class="headerlink" href="#model.GifInfo.display_size" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Current displaying GIF width and height
+as a named tuple of Pixels(x, y)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>model.units.Pixels</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="internal-module-functions">
+<h2>Internal module functions<a class="headerlink" href="#internal-module-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="model.gif_info._get_resize_factor">
+<span class="sig-prename descclassname"><span class="pre">model.gif_info.</span></span><span class="sig-name descname"><span class="pre">_get_resize_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gif_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.Pixels</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#model.gif_info._get_resize_factor" title="Permalink to this definition"></a></dt>
+<dd><p>DESCRIPTION</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gif_size</strong> (<em>model.units.Pixels</em>) – GIF file width and height as a
+named tuple of Pixels(x, y)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>GIF display resize factor as a float value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model.gif_info._usable_area">
+<span class="sig-prename descclassname"><span class="pre">model.gif_info.</span></span><span class="sig-name descname"><span class="pre">_usable_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">model.units.Pixels</span></span></span><a class="headerlink" href="#model.gif_info._usable_area" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>default</strong> (<em>float</em>) – Optional: the default display
+usable area as a float value.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The usable width and height of the smallest
+monitor as a named tuple of Pixels(x, y)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>model.units.Pixels</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="source-code-on-github">
+<h2><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/model/gif_info.py">Source code (on GitHub)</a><a class="headerlink" href="#source-code-on-github" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title=".main.py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.Selection.html" class="btn btn-neutral float-right" title=".model.Selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

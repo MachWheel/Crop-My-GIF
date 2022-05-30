@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.controllers._ui.Animation &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".controllers._ui.Display" href="controllers._ui.Display.html" />
+    <link rel="prev" title=".views._ui" href="views._ui.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling the application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.GifInfo.html">.model.GifInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views.html">.views</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">.controllers._ui.Animation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initializer">Initializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instance-functions">Instance functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-instance-function">Internal instance function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code-on-github">Source code (on GitHub)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.CropGUI.html">.controllers._ui.CropGUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Cropper.html">.controllers._gif.Cropper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>.controllers._ui.Animation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controllers._ui.Animation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controllers-ui-animation">
+<h1>.controllers._ui.Animation<a class="headerlink" href="#controllers-ui-animation" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="controllers._ui.animation.Animation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controllers._ui.animation.</span></span><span class="sig-name descname"><span class="pre">Animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySimpleGUI.PySimpleGUI.Window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gif_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.animation.Animation" title="Permalink to this definition"></a></dt>
+<dd><p>Controls and generates PySimpleGUI Window
+events related to the currently displayed
+GIF animation.</p>
+</dd></dl>
+
+<section id="initializer">
+<h2>Initializer<a class="headerlink" href="#initializer" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.Animation.__init__">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.Animation.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySimpleGUI.PySimpleGUI.Window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gif_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.Animation.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes a new Animation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view</strong> (<em>sg.Window</em>) – PySimpleGUI Window to control</p></li>
+<li><p><strong>gif_info</strong> (<em>model.GifInfo</em>) – Object containing the GIF file information</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/controllers/_ui/animation.py
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="instance-functions">
+<h2>Instance functions<a class="headerlink" href="#instance-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.Animation.start">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.Animation.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.Animation.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts a thread that generates animation events.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.Animation.hide_and_pause">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.Animation.</span></span><span class="sig-name descname"><span class="pre">hide_and_pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.Animation.hide_and_pause" title="Permalink to this definition"></a></dt>
+<dd><p>Hides current view and stops the animation thread.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.Animation.unhide_and_resume">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.Animation.</span></span><span class="sig-name descname"><span class="pre">unhide_and_resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.Animation.unhide_and_resume" title="Permalink to this definition"></a></dt>
+<dd><p>Shows currently hidden view and restarts the animation thread.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="internal-instance-function">
+<h2>Internal instance function<a class="headerlink" href="#internal-instance-function" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.Animation._frame_events">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.Animation.</span></span><span class="sig-name descname"><span class="pre">_frame_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.Animation._frame_events" title="Permalink to this definition"></a></dt>
+<dd><p>Needs to be called within a thread.</p>
+<p>Generates a PySimpleGUI Window event tuple:
+(“NextFrame”, n) every 0.01 second,</p>
+<p>where “n” is the current gif frame index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_frames</strong> (<em>int</em>) – Total number of frames</p></li>
+<li><p><strong>stop</strong> (<em>(</em><em>) </em><em>-&gt; bool</em>) – Returns _stop_animation flag state</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="source-code-on-github">
+<h2><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/controllers/_ui/animation.py">Source code (on GitHub)</a><a class="headerlink" href="#source-code-on-github" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="views._ui.html" class="btn btn-neutral float-left" title=".views._ui" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers._ui.Display.html" class="btn btn-neutral float-right" title=".controllers._ui.Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.controllers._gif.Cropper &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".controllers._gif.Frames" href="controllers._gif.Frames.html" />
+    <link rel="prev" title=".controllers._ui.CropGUI" href="controllers._ui.CropGUI.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling the application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.GifInfo.html">.model.GifInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views.html">.views</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Animation.html">.controllers._ui.Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.CropGUI.html">.controllers._ui.CropGUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">.controllers._gif.Cropper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initializer">Initializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instance-functions">Instance functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-instance-functions">Internal instance functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-module-function">Internal module function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code-on-github">Source code (on GitHub)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>.controllers._gif.Cropper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controllers._gif.Cropper.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controllers-gif-cropper">
+<h1>.controllers._gif.Cropper<a class="headerlink" href="#controllers-gif-cropper" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="controllers._gif.cropper.Cropper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controllers._gif.cropper.</span></span><span class="sig-name descname"><span class="pre">Cropper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.CropBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve_fps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._gif.cropper.Cropper" title="Permalink to this definition"></a></dt>
+<dd><p>Controller responsible for cropping and exporting
+a given GIF file.</p>
+</dd></dl>
+
+<section id="initializer">
+<h2>Initializer<a class="headerlink" href="#initializer" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.Cropper.__init__">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.Cropper.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.CropBox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve_fps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._gif.Cropper.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes a new Cropper object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> (<em>model.GifInfo</em>) – Object containing the GIF file information</p></li>
+<li><p><strong>box</strong> (<em>model.units.CropBox</em>) – selected crop coordinates as
+a named tuple: CropBox(x0, y0, x1, y1)</p></li>
+<li><p><strong>preserve_fps</strong> (<em>bool</em>) – Preserves the input frame rate if True</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/controllers/_gif/cropper.py
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="instance-functions">
+<h2>Instance functions<a class="headerlink" href="#instance-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.Cropper.export_gif">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.Cropper.</span></span><span class="sig-name descname"><span class="pre">export_gif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._gif.Cropper.export_gif" title="Permalink to this definition"></a></dt>
+<dd><p>Exports a cropped GIF file according to current instance values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The output file path if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="internal-instance-functions">
+<h2>Internal instance functions<a class="headerlink" href="#internal-instance-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.Cropper._run_export">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.Cropper.</span></span><span class="sig-name descname"><span class="pre">_run_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._gif.Cropper._run_export" title="Permalink to this definition"></a></dt>
+<dd><p>Submits the GIF file writing task as a thread,
+displaying its progress in a popup window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The output file path if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.Cropper._write_task">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.Cropper.</span></span><span class="sig-name descname"><span class="pre">_write_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._gif.Cropper._write_task" title="Permalink to this definition"></a></dt>
+<dd><p>Writes the cropped GIF file output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The output file path if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.Cropper._fix_export_fps">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.Cropper.</span></span><span class="sig-name descname"><span class="pre">_fix_export_fps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._gif.Cropper._fix_export_fps" title="Permalink to this definition"></a></dt>
+<dd><p>Sets cropper _export_fps value as the input
+frame rate by reading the first output number
+of frames.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="internal-module-function">
+<h2>Internal module function<a class="headerlink" href="#internal-module-function" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._gif.cropper._show_running">
+<span class="sig-prename descclassname"><span class="pre">controllers._gif.cropper.</span></span><span class="sig-name descname"><span class="pre">_show_running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">concurrent.futures._base.Future</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._gif.cropper._show_running" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the running exporting task progress
+in a popup window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>task</strong> (<em>Future</em><em>[</em><em>str</em><em>]</em>) – Running export task</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="source-code-on-github">
+<h2><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/controllers/_gif/cropper.py">Source code (on GitHub)</a><a class="headerlink" href="#source-code-on-github" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controllers._ui.CropGUI.html" class="btn btn-neutral float-left" title=".controllers._ui.CropGUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers._gif.Frames.html" class="btn btn-neutral float-right" title=".controllers._gif.Frames" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

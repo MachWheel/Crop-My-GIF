@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.controllers._ui.CropGUI &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".controllers._gif.Cropper" href="controllers._gif.Cropper.html" />
+    <link rel="prev" title=".controllers._ui.Display" href="controllers._ui.Display.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling the application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.GifInfo.html">.model.GifInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views.html">.views</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Animation.html">.controllers._ui.Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">.controllers._ui.CropGUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initializer">Initializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property">Property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instance-functions">Instance functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-instance-functions">Internal instance functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code-on-github">Source code (on GitHub)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Cropper.html">.controllers._gif.Cropper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>.controllers._ui.CropGUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controllers._ui.CropGUI.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controllers-ui-cropgui">
+<h1>.controllers._ui.CropGUI<a class="headerlink" href="#controllers-ui-cropgui" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="controllers._ui.crop_gui.CropGUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controllers._ui.crop_gui.</span></span><span class="sig-name descname"><span class="pre">CropGUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gif_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.crop_gui.CropGUI" title="Permalink to this definition"></a></dt>
+<dd><p>Handles user crop selection UI info and
+controls in a given PySimpleGUI Window.</p>
+</dd></dl>
+
+<section id="initializer">
+<h2>Initializer<a class="headerlink" href="#initializer" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI.__init__">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gif_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.GifInfo.html#model.gif_info.GifInfo" title="model.gif_info.GifInfo"><span class="pre">model.gif_info.GifInfo</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controllers._ui.CropGUI.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes a new CropGUI object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view</strong> (<em>sg.Window</em>) – PySimpleGUI Window to control</p></li>
+<li><p><strong>gif_info</strong> (<em>model.GifInfo</em>) – Object containing the GIF file information</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/controllers/_ui/crop_gui.py
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="property">
+<h2>Property<a class="headerlink" href="#property" title="Permalink to this headline"></a></h2>
+<dl class="py property">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI.preserve_fps">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CropGUI.</span></span><span class="sig-name descname"><span class="pre">preserve_fps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#controllers._ui.CropGUI.preserve_fps" title="Permalink to this definition"></a></dt>
+<dd><p>Returns ‘Preserve FPS’ control state as a boolean value</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="instance-functions">
+<h2>Instance functions<a class="headerlink" href="#instance-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI.update_info">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">update_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.CropBox</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.CropGUI.update_info" title="Permalink to this definition"></a></dt>
+<dd><p>Updates crop selection UI information elements
+and changes crop UI controls state according to
+current selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>box</strong> (<em>model.units.CropBox</em>) – Selected crop coordinates as
+a named tuple: CropBox(x0, y0, x1, y1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI.clear">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.CropGUI.clear" title="Permalink to this definition"></a></dt>
+<dd><p>Clears all crop selection UI information elements
+and disables crop UI controls.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="internal-instance-functions">
+<h2>Internal instance functions<a class="headerlink" href="#internal-instance-functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI._set_start_info">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">_set_start_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.CropBox</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.CropGUI._set_start_info" title="Permalink to this definition"></a></dt>
+<dd><p>Updates crop selection start information UI elements
+and enables the ‘Clear Selection’ button.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>box</strong> (<em>model.units.CropBox</em>) – Selected crop coordinates as
+a named tuple: CropBox(x0, y0, x1, y1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI._set_all_info">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">_set_all_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">model.units.CropBox</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.CropGUI._set_all_info" title="Permalink to this definition"></a></dt>
+<dd><p>Updates all crop selection information UI
+elements and enables all crop UI controls.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="py function">
+<dt class="sig sig-object py" id="controllers._ui.CropGUI._set_inputs_state">
+<span class="sig-prename descclassname"><span class="pre">controllers._ui.CropGUI.</span></span><span class="sig-name descname"><span class="pre">_set_inputs_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controllers._ui.CropGUI._set_inputs_state" title="Permalink to this definition"></a></dt>
+<dd><p>Enables or disables all crop related UI controls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>disabled</strong> (<em>bool</em>) – State to change into</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="source-code-on-github">
+<h2><a class="reference external" href="https://github.com/MachWheel/Crop-My-GIF/blob/main/controllers/_ui/crop_gui.py">Source code (on GitHub)</a><a class="headerlink" href="#source-code-on-github" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controllers._ui.Display.html" class="btn btn-neutral float-left" title=".controllers._ui.Display" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="controllers._gif.Cropper.html" class="btn btn-neutral float-right" title=".controllers._gif.Cropper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

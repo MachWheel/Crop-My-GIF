@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compiling the application &mdash; Crop My GIF 1.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title=".startup.py" href="startup.html" />
+    <link rel="prev" title="Cloning the repository" href="cloning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Crop My GIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloning.html">Cloning the repository</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compiling the application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#easy-way">Easy way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-way">Manual way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">requirements</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Startup modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">.startup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">.main.py</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.GifInfo.html">.model.GifInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.Selection.html">.model.Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.units.html">.model.units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers.App.html">.controllers.App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.Gifbrowser.html">.controllers.GifBrowser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Windows and Popups</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views.html">.views</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Elements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="views._ui.html">.views._ui</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">UI Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Animation.html">.controllers._ui.Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.Display.html">.controllers._ui.Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._ui.CropGUI.html">.controllers._ui.CropGUI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GIF Controllers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Cropper.html">.controllers._gif.Cropper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers._gif.Frames.html">.controllers._gif.Frames</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crop My GIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Compiling the application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/compiling.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compiling-the-application">
+<h1>Compiling the application<a class="headerlink" href="#compiling-the-application" title="Permalink to this headline"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>First:<br />
+<strong>clone the repository and properly configure its virtualenv</strong> (<a class="reference internal" href="cloning.html"><span class="doc">Cloning the repository</span></a>)</p></li>
+<li><p>Second:<br />
+<strong>change to the directory and activate virtualenv</strong> if it is not already activated:</p></li>
+</ul>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd Crop-My-GIF
+.\venv\Scripts\activate
+</pre></div>
+</div>
+<section id="easy-way">
+<h2>Easy way<a class="headerlink" href="#easy-way" title="Permalink to this headline"></a></h2>
+<p><strong>Inside Crop-My-GIF virtualenv, change the directory to compile and run the script:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd compile
+.\compile.bat
+</pre></div>
+</div>
+<p><img alt="COMPILE" src="https://s8.gifyu.com/images/compile-crop-my-gif.gif" /></p>
+<blockquote>
+<div><blockquote>
+<div><p><em><strong>The folder containing the generated .exe file will be opened automatically</strong></em></p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="manual-way">
+<h2>Manual way<a class="headerlink" href="#manual-way" title="Permalink to this headline"></a></h2>
+<p><strong>Inside Easy-Gifer virtualenv, change the directory to compile folder and run pyinstaller:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd compile
+pyinstaller -w --onefile ..\main.py --icon app.ico --name Crop-My-GIF --splash splashfile.jpg
+</pre></div>
+</div>
+<blockquote>
+<div><blockquote>
+<div><p><em><strong>The generated .exe file will be in .\compile\dist folder.</strong></em></p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="requirements">
+<h2>requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[requirements.txt]
+
+imageio==2.18.0
+imageio-ffmpeg==0.4.7
+moviepy==1.0.3
+Pillow==9.1.0
+pyinstaller==5.0.1
+pyinstaller-hooks-contrib==2022.4
+PySimpleGUI==4.59.0
+pywin32-ctypes==0.2.0
+screeninfo==0.8
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cloning.html" class="btn btn-neutral float-left" title="Cloning the repository" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="startup.html" class="btn btn-neutral float-right" title=".startup.py" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Wyller Machado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
