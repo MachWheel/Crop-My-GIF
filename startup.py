@@ -8,7 +8,7 @@ the application startup proccess.
 """
 import importlib.util
 import platform
-from ctypes import windll
+import ctypes
 import os
 
 from controllers import GifBrowser
@@ -31,9 +31,9 @@ def set_windows_dpi():
     if platform.system() == "Windows":
         ver = platform.release()
         if ver == "7":
-            windll.user32.SetProcessDPIAware()
+            ctypes.windll.user32.SetProcessDPIAware()
         elif ver == ("8" or "10"):
-            windll.shcore.SetProcessDpiAwareness(1)
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 def browse_gif() -> str:
     """
