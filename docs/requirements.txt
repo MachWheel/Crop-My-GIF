@@ -4,7 +4,7 @@ sphinx-rtd-theme
 imageio==2.18.0
 imageio-ffmpeg==0.4.7
 moviepy==1.0.3
-Pillow==9.1.0
+Pillow==9.1.1
 pyinstaller==5.0.1
 pyinstaller-hooks-contrib==2022.4
 PySimpleGUI==4.59.0

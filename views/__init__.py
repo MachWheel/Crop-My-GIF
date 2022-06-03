@@ -15,6 +15,7 @@ import PySimpleGUI as sg
 from model import Pixels
 from . import _ui
 
+
 def GET_FILE() -> sg.Window:
     """Returns file browser view as a PySimpleGUI Window object"""
     layout = [
@@ -25,8 +26,10 @@ def GET_FILE() -> sg.Window:
         title=_ui.txt.APP_TITLE,
         layout=layout,
         finalize=True,
-        element_justification='center'
+        element_justification='center',
+        icon=_ui.icons.LOGO(),
     )
+
 
 def CROP_GIF(img_size: Pixels) -> sg.Window:
     """Returns GIF cropping view as a PySimpleGUI Window object"""
@@ -38,7 +41,8 @@ def CROP_GIF(img_size: Pixels) -> sg.Window:
         title=_ui.txt.APP_TITLE,
         layout=layout,
         finalize=True,
-        element_justification='center'
+        element_justification='center',
+        icon=_ui.icons.LOGO(),
     )
 
 
@@ -58,7 +62,13 @@ def PROGRESS(importing=True, bar_end=200) -> sg.Window:
         [sg.Text(msg, key='-TXT-', font=_ui.style.F_BOLD_12)],
         [_ui.PROGRESS_BAR(bar_end)]
     ]
-    return sg.Window(title, layout)
+    return sg.Window(
+        title,
+        layout,
+        icon=_ui.icons.LOGO(),
+        no_titlebar=True,
+        keep_on_top=True
+    )
 
 
 def OUTPUT_READY(output: str) -> None:
@@ -68,7 +78,13 @@ def OUTPUT_READY(output: str) -> None:
     :param output: Output GIF file path
     :type output: str
     """
-    open_file = sg.popup_yes_no(_ui.txt.EXPORTED_MSG)
+    open_file = sg.popup_yes_no(
+        _ui.txt.EXPORTED_MSG,
+        font=_ui.style.F_BOLD_14,
+        icon=_ui.icons.LOGO(),
+        no_titlebar=True,
+        keep_on_top=True
+    )
     if open_file == 'Yes':
         os.startfile(os.path.realpath(output))
 
@@ -82,6 +98,8 @@ def ERROR(msg: str) -> None:
     """
     return sg.popup_error(
         f"\n{msg}\n",
-        font=_ui.style.F_14,
-        no_titlebar=True
+        font=_ui.style.F_BOLD_14,
+        no_titlebar=True,
+        icon=_ui.icons.LOGO(),
+        keep_on_top=True
     )
